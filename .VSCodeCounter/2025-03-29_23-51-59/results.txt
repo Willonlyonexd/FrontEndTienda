@@ -1,0 +1,139 @@
+Date : 2025-03-29 23:51:59
+Directory : c:\Users\HP\Documents\Ecommer\EcommerceTienda
+Total : 79 files,  15740 codes, 293 comments, 761 blanks, all 16794 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          5 |     12,602 |          2 |          5 |     12,609 |
+| HTML               |         15 |      1,314 |        205 |        426 |      1,945 |
+| TypeScript         |         26 |      1,200 |          8 |        258 |      1,466 |
+| XML                |          9 |        444 |          0 |          9 |        453 |
+| CSS                |         18 |        117 |         20 |         39 |        176 |
+| JSON with Comments |          1 |         31 |          1 |          1 |         33 |
+| Markdown           |          1 |         14 |          0 |         14 |         28 |
+| JavaScript         |          3 |         10 |         50 |          0 |         60 |
+| Docker             |          1 |          8 |          7 |          9 |         24 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                    | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                       |         79 |     15,740 |        293 |        761 |     16,794 |
+| . (Files)                                                                                                               |          9 |     12,695 |         16 |         40 |     12,751 |
+| src                                                                                                                     |         70 |      3,045 |        277 |        721 |      4,043 |
+| src (Files)                                                                                                             |          4 |         38 |          5 |         16 |         59 |
+| src\app                                                                                                                 |         51 |      2,447 |        203 |        670 |      3,320 |
+| src\app (Files)                                                                                                         |          7 |        134 |          0 |         23 |        157 |
+| src\app\components                                                                                                      |         41 |      2,227 |        202 |        627 |      3,056 |
+| src\app\components\bar                                                                                                  |          3 |         21 |          1 |          6 |         28 |
+| src\app\components\carrito                                                                                              |          3 |        191 |         12 |         50 |        253 |
+| src\app\components\checkout                                                                                             |          3 |        392 |         30 |         94 |        516 |
+| src\app\components\cuenta                                                                                               |          8 |        189 |         19 |         66 |        274 |
+| src\app\components\cuenta\perfil                                                                                        |          4 |         27 |          0 |         11 |         38 |
+| src\app\components\cuenta\sidebar-cuenta                                                                                |          4 |        162 |         19 |         55 |        236 |
+| src\app\components\footer                                                                                               |          3 |         68 |          9 |         27 |        104 |
+| src\app\components\inicio                                                                                               |          3 |         89 |          8 |         18 |        115 |
+| src\app\components\login                                                                                                |          3 |        111 |          7 |         33 |        151 |
+| src\app\components\navbar                                                                                               |          3 |        265 |         34 |         80 |        379 |
+| src\app\components\producto                                                                                             |          3 |        343 |         39 |        108 |        490 |
+| src\app\components\registro                                                                                             |          3 |        129 |         10 |         30 |        169 |
+| src\app\components\tienda                                                                                               |          3 |        367 |         29 |         96 |        492 |
+| src\app\components\verificacion                                                                                         |          3 |         62 |          4 |         19 |         85 |
+| src\app\services                                                                                                        |          3 |         86 |          1 |         20 |        107 |
+| src\assets                                                                                                              |         15 |        560 |         69 |         35 |        664 |
+| src\assets\css                                                                                                          |          3 |        106 |         19 |         26 |        151 |
+| src\assets\img                                                                                                          |          9 |        444 |          0 |          9 |        453 |
+| src\assets\img\flags                                                                                                    |          3 |         19 |          0 |          3 |         22 |
+| src\assets\img\patterns                                                                                                 |          2 |        398 |          0 |          2 |        400 |
+| src\assets\img\payment                                                                                                  |          4 |         27 |          0 |          4 |         31 |
+| src\assets\js                                                                                                           |          3 |         10 |         50 |          0 |         60 |
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\Dockerfile                                                                | Docker             |          8 |          7 |          9 |         24 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\README.md                                                                 | Markdown           |         14 |          0 |         14 |         28 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\angular.json                                                              | JSON               |        113 |          0 |          1 |        114 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\package-lock.json                                                         | JSON               |     12,412 |          0 |          1 |     12,413 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\package.json                                                              | JSON               |         47 |          0 |          1 |         48 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\server.ts                                                                 | TypeScript         |         40 |          6 |         11 |         57 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app-routing.module.ts                                             | TypeScript         |         28 |          0 |         10 |         38 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app.component.css                                                 | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app.component.html                                                | HTML               |          1 |          0 |          0 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app.component.spec.ts                                             | TypeScript         |         31 |          0 |          5 |         36 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app.component.ts                                                  | TypeScript         |          9 |          0 |          2 |         11 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app.module.server.ts                                              | TypeScript         |         12 |          0 |          3 |         15 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\app.module.ts                                                     | TypeScript         |         53 |          0 |          2 |         55 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\bar\bar.component.css                                  | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\bar\bar.component.html                                 | HTML               |         13 |          1 |          2 |         16 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\bar\bar.component.ts                                   | TypeScript         |          8 |          0 |          3 |         11 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\carrito\carrito.component.css                          | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\carrito\carrito.component.html                         | HTML               |         86 |         12 |         29 |        127 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\carrito\carrito.component.ts                           | TypeScript         |        105 |          0 |         20 |        125 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\checkout\checkout.component.css                        | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\checkout\checkout.component.html                       | HTML               |        231 |         29 |         55 |        315 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\checkout\checkout.component.ts                         | TypeScript         |        161 |          1 |         38 |        200 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\perfil\perfil.component.css                     | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\perfil\perfil.component.html                    | HTML               |          1 |          0 |          1 |          2 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\perfil\perfil.component.spec.ts                 | TypeScript         |         18 |          0 |          6 |         24 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\perfil\perfil.component.ts                      | TypeScript         |          8 |          0 |          3 |         11 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\sidebar-cuenta\sidebar-cuenta.component.css     | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\sidebar-cuenta\sidebar-cuenta.component.html    | HTML               |        105 |         19 |         40 |        164 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\sidebar-cuenta\sidebar-cuenta.component.spec.ts | TypeScript         |         18 |          0 |          6 |         24 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\cuenta\sidebar-cuenta\sidebar-cuenta.component.ts      | TypeScript         |         39 |          0 |          8 |         47 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\footer\footer.component.css                            | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\footer\footer.component.html                           | HTML               |         60 |          9 |         23 |         92 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\footer\footer.component.ts                             | TypeScript         |          8 |          0 |          3 |         11 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\inicio\inicio.component.css                            | CSS                |          3 |          0 |          0 |          3 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\inicio\inicio.component.html                           | HTML               |         73 |          8 |         14 |         95 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\inicio\inicio.component.ts                             | TypeScript         |         13 |          0 |          4 |         17 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\login\login.component.css                              | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\login\login.component.html                             | HTML               |         55 |          7 |         22 |         84 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\login\login.component.ts                               | TypeScript         |         56 |          0 |         10 |         66 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\navbar\navbar.component.css                            | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\navbar\navbar.component.html                           | HTML               |        161 |         34 |         61 |        256 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\navbar\navbar.component.ts                             | TypeScript         |        104 |          0 |         18 |        122 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\producto\producto.component.css                        | CSS                |          3 |          0 |          2 |          5 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\producto\producto.component.html                       | HTML               |        199 |         39 |         76 |        314 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\producto\producto.component.ts                         | TypeScript         |        141 |          0 |         30 |        171 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\registro\registro.component.css                        | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\registro\registro.component.html                       | HTML               |         74 |         10 |         22 |        106 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\registro\registro.component.ts                         | TypeScript         |         55 |          0 |          7 |         62 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\tienda\tienda.component.css                            | CSS                |          4 |          0 |          0 |          4 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\tienda\tienda.component.html                           | HTML               |        195 |         29 |         62 |        286 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\tienda\tienda.component.ts                             | TypeScript         |        168 |          0 |         34 |        202 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\verificacion\verificacion.component.css                | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\verificacion\verificacion.component.html               | HTML               |         28 |          4 |          8 |         40 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\components\verificacion\verificacion.component.ts                 | TypeScript         |         34 |          0 |         10 |         44 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\services\GLOBAL.ts                                                | TypeScript         |          4 |          1 |          0 |          5 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\services\cliente.service.ts                                       | TypeScript         |         37 |          0 |          9 |         46 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\app\services\visitante.service.ts                                     | TypeScript         |         45 |          0 |         11 |         56 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\css\flickity.css                                               | CSS                |        103 |         10 |         25 |        138 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\css\libs.bundle.css                                            | CSS                |          2 |          3 |          1 |          6 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\css\theme.bundle.css                                           | CSS                |          1 |          6 |          0 |          7 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\flags\canada.svg                                           | XML                |          6 |          0 |          1 |          7 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\flags\germany.svg                                          | XML                |          5 |          0 |          1 |          6 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\flags\usa.svg                                              | XML                |          8 |          0 |          1 |          9 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\patterns\pattern-1.svg                                     | XML                |        394 |          0 |          1 |        395 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\patterns\pattern-2.svg                                     | XML                |          4 |          0 |          1 |          5 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\payment\amex.svg                                           | XML                |          5 |          0 |          1 |          6 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\payment\mastercard.svg                                     | XML                |          7 |          0 |          1 |          8 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\payment\paypal.svg                                         | XML                |          9 |          0 |          1 |         10 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\img\payment\visa.svg                                           | XML                |          6 |          0 |          1 |          7 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\js\flickity.pkgd.min.js                                        | JavaScript         |          8 |         48 |          0 |         56 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\js\theme.bundle.js                                             | JavaScript         |          1 |          1 |          0 |          2 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\assets\js\vendor.bundle.js                                            | JavaScript         |          1 |          1 |          0 |          2 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\index.html                                                            | HTML               |         32 |          4 |         11 |         47 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\main.server.ts                                                        | TypeScript         |          1 |          0 |          1 |          2 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\main.ts                                                               | TypeScript         |          4 |          0 |          4 |          8 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\src\styles.css                                                            | CSS                |          1 |          1 |          0 |          2 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\tsconfig.app.json                                                         | JSON               |         17 |          1 |          1 |         19 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\tsconfig.json                                                             | JSON with Comments |         31 |          1 |          1 |         33 |
+| c:\Users\HP\Documents\Ecommer\EcommerceTienda\tsconfig.spec.json                                                        | JSON               |         13 |          1 |          1 |         15 |
+| Total                                                                                                                   |                    |     15,740 |        293 |        761 |     16,794 |
++-------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
