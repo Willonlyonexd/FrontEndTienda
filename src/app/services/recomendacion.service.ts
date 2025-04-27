@@ -1,3 +1,4 @@
+// src/app/services/recomendacion.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,7 +12,11 @@ export class RecomendacionService {
 
   constructor(private http: HttpClient) { }
 
+  // Obtener productos populares (general)
   obtenerProductosPopulares(): Observable<any> {
     return this.http.get<any>(`${this.API_URL}/populares`);
   }
+
+  // ✅ Nuevo: Obtener productos recomendados (por cliente logeado)
+
 }
