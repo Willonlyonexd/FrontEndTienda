@@ -1,0 +1,40 @@
+
+<app-navbar></app-navbar>
+
+<section class="py-12">
+    <div class="container">
+        <div class="row justify-content-center" bis_skin_checked="1">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 text-center" bis_skin_checked="1">
+  
+              <!-- Icon -->
+              <div class="mb-7 fs-1" bis_skin_checked="1">
+                <ng-container  *ngIf="!estado">🙁</ng-container>  
+                <ng-container  *ngIf="estado">😃</ng-container> 
+              </div>
+  
+              <!-- Heading -->
+              <h2 class="mb-5 fw-700">
+                <ng-container  *ngIf="!estado">
+                    No se pudo verificar
+                </ng-container>  
+                <ng-container  *ngIf="estado">
+                    Verificación de cuenta correcta
+                </ng-container> 
+              </h2>
+  
+              <!-- Text -->
+              <p class="mb-7 text-gray-500">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque, numquam nisi? Veniam suscipit unde recusandae?
+              </p>
+  
+              <!-- Button -->
+              <a class="btn btn-dark" [routerLink]="['/']">
+                Ir al inicio
+              </a>
+  
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

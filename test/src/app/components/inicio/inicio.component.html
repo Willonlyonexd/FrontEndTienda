@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>
+    <!-- PROMO -->
+
+  <app-bar></app-bar>
+<div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><div class="w-100 bg-cover" style="background-image: url(https://yevgenysim-turkey.github.io/shopper/assets/img/covers/cover-5.jpg);">
+        <div class="container d-flex flex-column">
+            <div class="row align-items-center py-12" style="min-height: 550px;">
+            <div class="col-12 col-md-6 col-lg-5 col-xl-4 offset-md-1">
+    
+                <!-- Heading -->
+                <h1>Venta de verano</h1>
+    
+                <!-- Heading -->
+                <h2 class="display-1 text-primary">-70%</h2>
+    
+                <!-- Heading -->
+                
+    
+                <!-- Button -->
+                <a class="btn btn-dark" [routerLink]="['/tienda']">
+                Compra ahora <i class="fe fe-arrow-right ms-2"></i>
+                </a>
+    
+            </div>
+            </div>
+        </div>
+    </div></div>
+      <div class="swiper-slide"><div class="w-100 bg-cover" style="background-image: url(https://yevgenysim-turkey.github.io/shopper/assets/img/covers/cover-16.jpg);">
+        <div class="container d-flex flex-column">
+            <div class="row align-items-center py-12" style="min-height: 550px;">
+                <div class="col-12 text-center text-white">
+    
+                    <!-- Preheading -->
+                    <h4 class="mb-0">Summer Styles</h4>
+    
+                    <!-- Heading -->
+                    <h1 class="display-1">
+                      50% OFF
+                    </h1>
+    
+                    <!-- Links -->
+                    <p class="mb-0">
+                      <a href="shop.html" class="link-underline text-reset mx-4 my-4">Shop Women</a>
+                      <a href="shop.html" class="link-underline text-reset mx-4 my-4">Shop Men</a>
+                    </p>
+    
+                </div>
+            </div>
+        </div>
+    </div></div>
+      
+    </div>
+  </div>
+
+  <div style="background-color: aliceblue;">
+      <div class="container py-10">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h2>CATEGORIAS</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class=" col-lg-3 col-md-3 col-sm-6 text-center">
+              <a [routerLink]="['/tienda']" [queryParams]="{genero:'Femenino'}">
+                <img class="w-100 border-50" src="assets/1.jpg" alt="">
+            <span class="fs-6 fw-bold">Prendas <br> Femeninas</span>
+              </a>
+          </div>
+          <div class=" col-lg-3 col-md-3 col-sm-6 text-center">
+              <a [routerLink]="['/tienda']" [queryParams]="{genero:'Masculino'}" >
+                <img class="w-100 border-50"src="assets/2.jpg" alt="">
+            <span class="fs-6 fw-bold">Prendas <br> Masculinas</span>
+              </a>
+          </div>
+          <div class=" col-lg-3 col-md-3 col-sm-6 text-center">
+            <a [routerLink]="['/tienda']" [queryParams]="{genero:'Niños'}">
+              <img class="w-100 border-50" src="assets/3.jpg" alt="">
+            <span class="fs-6 fw-bold">Prendas <br> Niños</span>
+            </a>
+          </div>
+          <div class=" col-lg-3 col-md-3 col-sm-6 text-center">
+              <a [routerLink]="['/tienda']" [queryParams]="{genero:'Niños'}">
+                <img class="w-100 border-50"src="assets/4.jpg" alt="">
+            <span class="fs-6 fw-bold">Prendas <br> Niñas</span>
+              </a>
+          </div>
+        </div>
+       
+      </div>
+  </div>
+</div>
+  <app-footer></app-footer>

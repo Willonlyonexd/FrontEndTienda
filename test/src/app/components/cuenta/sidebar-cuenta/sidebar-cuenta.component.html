@@ -1,0 +1,164 @@
+<app-navbar></app-navbar>
+    <!-- PROMO -->
+
+  <app-bar></app-bar>
+
+    <!-- BREADCRUMB -->
+<nav class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb mb-0 fs-xs text-gray-400">
+            <li class="breadcrumb-item">
+              <a class="text-gray-400"[routerLink]="['/stilo/inicio']">Inicio</a>
+            </li>
+            <li class="breadcrumb-item active">
+              Mi cuenta
+            </li>
+          </ol>
+  
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- CONTENT -->
+  <section class="pt-7 pb-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+  
+          <!-- Heading -->
+          <h3 class="mb-10">Mi cuenta</h3>
+  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-3">
+  
+         
+  
+        </div>
+            <ng-container  >
+                
+              <div class="card card-lg mb-5 border" *ngFor="let item of ventas">
+                <div class="card-body pb-0">
+              
+                  <!-- Info -->
+                  <div class="card card-sm">
+                    <div class="card-body bg-light">
+                      <div class="row">
+                        <div class="col-6 col-lg-3">
+              
+                          <!-- Heading -->
+                          <h6 class="heading-xxxs text-muted">Nro de Orden:</h6>
+              
+                          <!-- Text -->
+                          <p class="mb-lg-0 fs-sm fw-bold">
+                            {{item.venta._id.substring(12, 50)}}
+                          </p>
+              
+                        </div>
+                        <div class="col-6 col-lg-3">
+              
+                          <!-- Heading -->
+                          <h6 class="heading-xxxs text-muted">Fecha:</h6>
+              
+                          <!-- Text -->
+                          <p class="mb-lg-0 fs-sm fw-bold">
+                            <time datetime="2019-10-01">
+                              {{item.venta.createdAT| date}}
+                            </time>
+                          </p>
+              
+                        </div>
+                        <div class="col-6 col-lg-3">
+              
+                          <!-- Heading -->
+                          <h6 class="heading-xxxs text-muted">Estado:</h6>
+              
+                          <!-- Text -->
+                          <p class="mb-0 fs-sm fw-bold">
+                            {{item.venta.estado}}
+                          </p>
+              
+                        </div>
+                        <div class="col-6 col-lg-3">
+              
+                          <!-- Heading -->
+                          <h6 class="heading-xxxs text-muted">Total:</h6>
+              
+                          <!-- Text -->
+                          <p class="mb-0 fs-sm fw-bold">
+                            {{item.venta.total| currency:'BOB'}}
+                          </p>
+              
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                </div>
+                <div class="card-footer">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-lg-6">
+                      <div class="row gx-5 mb-4 mb-lg-0">
+                        <div class="col-3" *ngIf="item.detallesV[0]">
+              
+                          <!-- Image -->
+                          <div class="ratio ratio-1x1 bg-cover" *ngIf="item.detallesV && item.detallesV.length > 0 && item.detallesV[0].producto" [ngStyle]="{'background-image': 'url(' + url + '/getProductoPortada/' + (item.detallesV[0].producto?.portada ?? 'imagenPorDefecto.jpg') + ')'}"></div>
+              
+                        </div>
+                        <div class="col-3"*ngIf="item.detallesV[1]">
+              
+                          <!-- Image -->
+                          <div class="ratio ratio-1x1 bg-cover" *ngIf="item.detallesV && item.detallesV.length > 0 && item.detallesV[1].producto" [ngStyle]="{'background-image': 'url(' + url + '/getProductoPortada/' + (item.detallesV[1].producto?.portada ?? 'imagenPorDefecto.jpg') + ')'}"></div>
+              
+                        </div>
+                        <div class="col-3"*ngIf="item.detallesV[2]">
+              
+                          <!-- Image -->
+                          <div class="ratio ratio-1x1 bg-cover" *ngIf="item.detallesV && item.detallesV.length > 0 && item.detallesV[2].producto" [ngStyle]="{'background-image': 'url(' + url + '/getProductoPortada/' + (item.detallesV[2].producto?.portada ?? 'imagenPorDefecto.jpg') + ')'}"></div>
+              
+                        </div>
+                       
+                        <div class="col-3"*ngIf="item.detallesV.length>=4">
+              
+                          <!-- Image -->
+                          <div class="ratio ratio-1x1 bg-light">
+                            <a class="ratio-item ratio-item-text text-reset" href="#!">
+                              <div class="fs-xxs fw-bold">
+                                +{{ item.detallesV.length - 3 }} <br> mas
+                              </div>
+                            </a>
+                          </div>
+              
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                      <div class="row gx-5">
+                        <div class="col-12">
+              
+                          <!-- Button -->
+                          <a class="btn btn-sm w-100 btn-outline-dark" href="account-order.html">
+                            Detalle Orden
+                          </a>
+              
+                        </div>
+                        
+                      </div>
+              
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>

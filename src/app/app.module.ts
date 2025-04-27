@@ -19,6 +19,18 @@ import { SidebarCuentaComponent } from './components/cuenta/sidebar-cuenta/sideb
 import { PerfilComponent } from './components/cuenta/perfil/perfil.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// Angular Material imports
+import { MatPaginatorModule } from '@angular/material/paginator'; // Paginación
+import { MatButtonModule } from '@angular/material/button'; // Botones
+import { MatCardModule } from '@angular/material/card'; // Tarjetas
+import { MatIconModule } from '@angular/material/icon'; // Iconos
+import { MatSelectModule } from '@angular/material/select'; // Selects (para filtros)
+import { MatInputModule } from '@angular/material/input'; // Inputs (para filtros)
+import { MatFormFieldModule } from '@angular/material/form-field'; // Form field (para inputs)
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox'; // Para checkboxes
+
 
 @NgModule({
   declarations: [
@@ -43,11 +55,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatSelectModule,
+    MatInputModule,
+    MatPaginatorModule,  // Para paginación
+    MatCheckboxModule,  // Para checkboxes
+    BrowserAnimationsModule,  // Make sure this is added
+    MatButtonModule,  // Para botones
+    MatMenuModule,  // Asegúrate de que MatMenuModule esté importado
+    MatPaginatorModule,  // Add this line
+    MatFormFieldModule
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

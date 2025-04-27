@@ -45,6 +45,11 @@ export class CheckoutComponent {
   }
 
   ngOnInit(){
+    //17 04 2025 se corrigo que al momento de ingresar al checkout permite moverse con libertar
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    document.body.classList.remove('modal-open', 'overflow-hidden');
+    //----
     this.initCarrito();
     this.renderPaypalButton();
     

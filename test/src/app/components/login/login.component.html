@@ -1,0 +1,84 @@
+
+<app-navbar></app-navbar>
+
+<section class="py-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-12 mx-auto">
+                <div class="card card-lg">
+                    <div class="card-body">
+      
+                      <!-- Heading -->
+                      <h6 class="mb-7 text-center fw-700">Login</h6>
+      
+                      <!-- Form -->
+                      <div class="row">
+                        <div class="col-12">
+    
+                         
+                        </div>
+                        <div class="col-12">
+    
+                          <!-- Email -->
+                          <div class="form-group">
+                            <label class="visually-hidden" for="registerEmail">
+                              Email *
+                            </label>
+                            <input class="form-control form-control-sm"  type="email" placeholder="Email " name="email" [(ngModel)]="email" [ngClass]="{'is-invalid mb-2': msnErrorEmail}">
+                            <span  *ngIf="msnErrorEmail" class="text-danger">{{msnErrorEmail}}</span>
+                          </div>
+    
+                        </div>
+                        <div class="col-12 ">
+    
+                          <!-- Password -->
+                          <div class="form-group">
+                            <label class="visually-hidden" for="registerPassword">
+                              Contraseña *
+                            </label>
+                            <input class="form-control form-control-sm"  type="password" placeholder="Contraseña " name="password" [(ngModel)]="password"[ngClass]="{'is-invalid mb-2': msnErrorPassword}">
+                            <span *ngIf="msnErrorPassword" class="text-danger">{{msnErrorPassword}}</span>
+                          </div>
+    
+                        </div>
+                        <div class="col-12">
+    
+                        
+    
+                        </div>
+                        <div class="col-12 col-md-auto text-center">
+                           
+                          <!-- Link -->
+                          <div class="mb-5">
+                            <a [routerLink]="['/registro']" class="form-group fs-sm text-dark">Registrate</a>
+                          </div>
+    
+                        </div>
+                        <div class="col-12 col-md">
+    
+                          <!-- Newsletter -->
+                         
+    
+                        </div>
+                        <div class="col-12 text-center">
+    
+                          <!-- Button -->
+                          <button *ngIf="!btnLoad" class="btn btn-sm btn-dark w-100" type="button" (click)="loguear()">
+                           Iniciar Sesion
+                          </button>
+                          <button *ngIf="btnLoad" class="btn btn-sm btn-dark w-100" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Cargando...
+                          </button>
+    
+                        </div>
+                      </div>
+      
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,286 @@
+<app-navbar></app-navbar>
+    <!-- PROMO -->
+
+  <app-bar></app-bar>
+  <!-- BREADCRUMB -->
+  <nav class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb mb-0 fs-xs text-gray-400">
+            <li class="breadcrumb-item">
+              <a class="text-reset" [routerLink]="['/']">Pagina Inicio</a>
+            </li>
+            <li class="breadcrumb-item active">
+              <span  >Tienda</span>
+            </li>
+          </ol>
+  
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- CONTENT -->
+  <section class="pt-7 pb-12">
+    <div class="container">
+      <div class="row">
+       
+      </div>
+      <div class="row">
+        <div class="col-12">
+  
+          <!-- Filters -->
+          <div class="btn-group-justified btn-group-expand-lg mb-10" role="group">
+            <div class="btn-group dropdown">
+  
+              <!-- Toggle -->
+              <button class="btn btn-sm w-100 btn-outline-border dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside">
+                Orden: 
+                <small>{{ordenarPor}}</small>
+              </button>
+  
+              <!-- Menu -->
+              <form class="dropdown-menu">
+                <div class="card">
+                  <div class="card-body">
+  
+                    <!-- Form group -->
+                    <div class="form-group-overflow">
+                        <div class="form-check form-check-text mb-3">
+                            <label class="form-check-label" [ngClass]="{'element-active':ordenarPor=='Defecto' }" (click)="setOrdenarPor('Defecto')" >Defecto</label> 
+                        </div>
+                        <div class="form-check form-check-text mb-3">
+                            <label class="form-check-label" [ngClass]="{'element-active':ordenarPor=='Precio menor' }" (click)="setOrdenarPor('Precio menor')" >Precio menor</label>
+                        </div>
+                        <div class="form-check form-check-text mb-3">
+                            <label class="form-check-label" [ngClass]="{'element-active':ordenarPor=='Precio mayor' }" (click)="setOrdenarPor('Precio mayor')" >Precio mayor</label>
+                        </div>
+                        <div class="form-check form-check-text mb-3">
+                            <label class="form-check-label" [ngClass]="{'element-active':ordenarPor=='A-Z' }" (click)="setOrdenarPor('A-Z')" >A-Z</label>
+                        </div>
+                        <div class="form-check form-check-text">
+                            <label class="form-check-label" [ngClass]="{'element-active':ordenarPor=='Z-A' }" (click)="setOrdenarPor('Z-A')" >Z-A</label>
+                        </div>
+                    </div>
+  
+                  </div>
+                </div>
+              </form>
+  
+            </div>
+            <div class="btn-group dropdown">
+  
+                <!-- Toggle -->
+                <button class="btn btn-sm w-100 btn-outline-border dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside">
+                  Genero: 
+                  <small>{{genero}}</small>
+                </button>
+    
+                <!-- Menu -->
+                <form class="dropdown-menu">
+                  <div class="card">
+                    <div class="card-body">
+    
+                      <!-- Form group -->
+                      <div class="form-group-overflow">
+                        <div class="form-check form-check-text mb-3">
+                          <label class="form-check-label" [ngClass]="{'element-active':genero=='Todos' }"  (click)="setFiltro('Genero','Todos')" >Todos</label>
+                        </div>
+                        <div class="form-check form-check-text mb-3">
+                          <label class="form-check-label"[ngClass]="{'element-active':genero=='Femenino' }"(click)="setFiltro('Genero','Femenino')" >Femenino</label>
+                        </div>
+                        <div class="form-check form-check-text mb-3">
+                            <label class="form-check-label"[ngClass]="{'element-active':genero=='Masculino' }" (click)="setFiltro('Genero','Masculino')" >Masculino</label>
+                          </div>
+                        <div class="form-check form-check-text mb-3">
+                          <label class="form-check-label"[ngClass]="{'element-active':genero=='Niñas' }" (click)="setFiltro('Genero','Niñas')" >Niñas</label>
+                        </div>
+                        <div class="form-check form-check-text mb-3">
+                          <label class="form-check-label"[ngClass]="{'element-active':genero=='Niños' }" (click)="setFiltro('Genero','Niños')" >Niños</label>
+                        </div>
+                       
+                      </div>
+    
+                    </div>
+                  </div>
+                </form>
+    
+              </div>
+            <div class="btn-group dropdown">
+  
+              <!-- Toggle -->
+              <button class="btn btn-sm w-100 btn-outline-border dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside">
+                Categoria:
+                <small>({{queryCategorias.length}})</small>
+              </button>
+  
+              <!-- Menu -->
+              <div class="dropdown-menu">
+                <div class="card">
+                  <div class="card-body">
+  
+                    <!-- Form group -->
+                    <div class="form-group-overflow" *ngIf="categorias.length>=1">
+                      <div class="form-check mb-3" *ngFor="let item of categorias; let idx=index">
+                        <input (change)="seleccion($event,idx)" class="form-check-input" [checked]="item.seleccion" id="categoryOne" name="category" type="checkbox" value="All Products">
+                        <label class="form-check-label" for="categoryOne">{{item.titulo}}</label>
+                      </div>
+                      
+                    </div>
+
+                    <small *ngIf="categorias.length==0" class="text-muted"> Seleccione un genero</small>
+  
+                  </div>
+                  <div class="card-footer d-flex flex-nowrap border-top">
+  
+                    <!-- Buttons -->
+                    
+                    <button class="btn btn-dark btn-sm ms-2" style="width: 100% !important;" type="button" (click)="setCategoria()">
+                      aplicar
+                    </button>
+  
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+           
+            
+          
+           
+            <div class="btn-group dropdown">
+  
+              <!-- Toggle -->
+              <button class="btn btn-sm w-100 btn-outline-border dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside">
+                Precio: 
+                <small>{{precio}}</small>
+              </button>
+  
+              <!-- Menu -->
+              <form class="dropdown-menu">
+                <div class="card">
+                  <div class="card-body">
+  
+                    <!-- Form group -->
+                    <div class="form-group-overflow">
+                      <div class="form-check mb-3">
+                        <input class="form-check-input chk-precio " id="priceOne" type="checkbox" (change)="selectPrecio($event)" value="BOB10.00 - BOB49.00">
+                        <label class="form-check-label" for="priceOne">
+                          BOB10.00 - BOB49.00
+                        </label>
+                      </div>
+                      <div class="form-check mb-3">
+                        <input class="form-check-input chk-precio" id="priceTwo" type="checkbox" (change)="selectPrecio($event)"value="BOB50.00 - BOB99.00">
+                        <label class="form-check-label" for="priceTwo">
+                          BOB50.00 - BOB99.00
+                        </label>
+                      </div>
+                      <div class="form-check mb-3">
+                        <input class="form-check-input chk-precio" id="priceThree" type="checkbox" (change)="selectPrecio($event)" value="BOB100.00 - BOB199.00">
+                        <label class="form-check-label" for="priceThree">
+                          BOB100.00 - BOB199.00
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input chk-precio" id="priceFour" type="checkbox" (change)="selectPrecio($event)" value="BOB200.00 a mas">
+                        <label class="form-check-label" for="priceFour">
+                          BOB200.00 a mas
+                        </label>
+                      </div>
+                    </div>
+  
+                  </div>
+                  <div class="card-footer d-flex flex-nowrap border-top">
+  
+                    <!-- Buttons -->
+                  
+                    <button style="width: 100% !important;" (click)="setFiltro('Precio',true)" class="btn btn-dark btn-sm ms-2" type="submit">
+                      Aplicar
+                    </button>
+  
+                  </div>
+                </div>
+              </form>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of productos">
+  
+          <!-- Card -->
+          <div class="card mb-7" data-toggle="card-collapse" style="background-color: transparent !important;">
+  
+            <!-- Badge -->
+            <div class="badge bg-dark text-white card-badge card-badge-start text-uppercase">
+              {{item.etiqueta}}
+            </div>
+  
+            <!-- Image -->
+            <div class="card-img" data-flickity='{"draggable": false}' id="productOneImg">
+              <a class="d-block w-100" [routerLink]="['/tienda',item.slug]">
+                <img class="card-img-top" [src]="url+'/getProductoImagenes/'+item.portada" alt="..." />
+              </a>
+             
+            </div>
+  
+            <!-- Collapse -->
+            <div class="card-collapse-parent">
+  
+              <!-- Body -->
+              <div class="card-body px-0 pb-0 ">
+                <div class="row gx-0">
+                  <div class="col-12">
+  
+                    <!-- Title -->
+                    <a class="d-block fw-bold text-body" href="" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                      {{item.titulo}}
+                    </a>
+  
+                    <!-- Category -->
+                  <code style="color: #4b4bff;font-size: .8rem !important;">
+                      {{item.clasificacion}} - {{item.categoria.titulo}}
+                    </code>
+  
+                  </div>
+                  <div class="col-12">
+  
+                    <!-- Price -->
+                    <div class="fs-7 fw-bold ">
+
+                      {{item.precio|currency:'BOB'}}
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Footer -->
+              <div class="card-collapse collapse">
+               
+              </div>
+  
+            </div>
+  
+          </div>
+          
+  
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-12">
+  
+          <!-- Progress -->
+          
+  
+        </div>
+      </div>
+    </div>
+  </section>
+<app-footer></app-footer>

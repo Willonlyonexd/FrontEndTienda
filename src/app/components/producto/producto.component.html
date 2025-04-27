@@ -1,314 +1,307 @@
 <app-navbar></app-navbar>
-    <!-- PROMO -->
+<!-- PROMO -->
 
-  <app-bar></app-bar>
-  <!-- BREADCRUMB -->
-    <ng-container  *ngIf="btnLoad">
-        <div class="container">
-            <div class="row py-15">
-                <div class="col-lg-12 text-center">
-                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-            </div>
+<app-bar></app-bar>
+<!-- BREADCRUMB -->
+<ng-container *ngIf="btnLoad">
+  <div class="container">
+    <div class="row py-15">
+      <div class="col-lg-12 text-center">
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
-    </ng-container>
-    <ng-container *ngIf="!btnLoad" >
-            <nav class="my-5">
-                <div class="container">
-                <div class="row">
-                    <div class="col-12">
-            
-                    <!-- Breadcrumb -->
-                    <ol class="breadcrumb mb-0 fs-xs text-gray-400">
-                        <li class="breadcrumb-item">
-                        <a class="text-reset" [routerLink]="['/']">Pagina Inicio</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a class="text-reset" [routerLink]="['/stilo/tienda']">Tienda</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                        <span  >{{producto.titulo}}</span>
-                        </li>
-                    </ol>
-            
-                    </div>
-                </div>
-                </div>
-            </nav>
-            
-            <!-- CONTENT -->
-                <!-- PRODUCT -->
-            <section>
-                <div class="container">
-                <div class="row">
-                    <div class="col-12" >
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-            
-                        <!-- Card -->
-                        <div class="card pb-4" style="background-color: #f5f5f5;">
-            
-                            <!-- Badge -->
-                            <div class="badge bg-primary card-badge text-uppercase">
-                            {{producto.etiqueta}}
-                            </div>
-            
-                            <!-- Slider -->
-                            <div class=""  id="productSlider">
-            
-                            <!-- Item -->
-                                <a *ngFor="let item of galeria" href="#" [attr.data-bigpicture]='{ "imgSrc": url+"/getProductoPortada/"+item.imagen}'>
-                                    <img [src]="url+'/getProductoPortada/'+item.imagen" alt="..." class="card-img-top">
-                                </a>
-                
-                                <!-- Item -->
-                            
-            
-                            </div>
-            
-                        </div>
-            
-                        <!-- Slider -->
-                        <div class="flickity-nav mx-n2 mb-10 mb-md-0" >
-            
-                            <!-- Item -->
-                            <div *ngFor="let item of galeria" class="col-12 px-2" style="max-width: 113px;">
-            
-                            <!-- Image -->
-                            <div class="ratio ratio-1x1 bg-cover" style="background-image: url({{url}}/getProductoPortada/{{item.imagen}});">
-            
-                            </div>
-            
-                            </div>
-            
-                            
-            
-                        </div>
-            
-                        </div>
-                        <div class="col-12 col-md-6 ps-lg-10">
-            
-                        <!-- Header -->
-                        <div class="row mb-1">
-                            <div class="col">
-            
-                            <!-- Preheading -->
-                            <a class="text-muted">{{producto.clasificacion}} - {{producto.categoria.titulo}}</a>
-            
-                            </div>
-                            <div class="col-auto">
-            
-                            
-            
-                            
-                            </div>
-                        </div>
-            
-                        <!-- Heading -->
-                        <h3 class="mb-2">{{producto.titulo}}</h3>
-            
-                        <!-- Price -->
-                        <div class="mb-7">
-                        <!--    <span class="fs-lg fw-bold text-gray-350 text-decoration-line-through">$115.00</span> -->
-                            <span class="ms-1 fs-5 fw-bolder text-primary">{{variacionSeleccionada.precio|currency:'BOB'}}</span>
-                            <span class="fs-sm ms-1" *ngIf="variciones[0].cantidades>0">
-                                {{variacionSeleccionada.cantidades}} disponibles
-                            </span>
-                        </div>
-            
-                        <!-- Form -->
-                        <form>
-                            <div class="form-group">
-            
-                            <!-- Label -->
-                            
-            
-                            <!-- Radio -->
-                            
-            
-                            </div>
-                            <div class="form-group">
-            
-                            <!-- Label -->
-                            
-            
-                            <!-- Radio -->
-                            <div class="mb-2">
-                                <div (click)="seleccionVariacion(subitem)" 
-                                class="form-check form-check-inline form-check-size mb-2" 
-                                *ngFor="let subitem of variciones" 
-                                [ngStyle]="{'background-color':subitem.hxd}"
-                                [ngClass]="{'variacionActiva':variacion._id==subitem._id }">
-                                <label class="form-check-label text-white" for="sizeRadioOne">{{subitem.talla}}</label>
-                                </div>
-                            
-                            </div>
-            
-                            <!-- Size chart -->
-                            <p class="mb-8">
-                            <a class="text-reset text-decoration-underline ms-3" data-bs-toggle="modal" href="#modalSizeChart">Guia de tallas</a>
-                            </p>
-                            
-                            <div *ngIf="mensaje.texto" class="alert " [ngClass]="{'alert-success':mensaje.tipo==1,'alert-danger':mensaje.tipo==2}" role="alert">
-                              {{mensaje.texto}}
-                            </div>
-                            <div class="row gx-5 mb-7">
-                                <div class="col-12 col-lg-auto">
-            
-                                <!-- Quantity -->
-                                <select class="form-select mb-2" name="cantidad" [(ngModel)]="cantidad">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-            
-                                </div>
-                                <div class="col-12 col-lg">
-            
-                                <!-- Submit -->
-                                <button *ngIf="user!=null" (click)="addCarritoUser()" class="btn w-100 btn-dark mb-2">
-                                    Carrito de Compras <i class="fe fe-shopping-cart ms-2"></i>
-                                </button>
-                                <button *ngIf="user==null"  (click)="addCarritoNoUser()" class="btn w-100 btn-dark mb-2">
-                                  Carrito de Compras 1 <i class="fe fe-shopping-cart ms-2"></i>
-                              </button>
-            
-                                </div>
-                            
-                            </div>
-            
-                            <!-- Text -->
-                            
-            
-                            <!-- Share -->
-                            
-            
-                            </div>
-                        </form>
-            
-                        </div>
-                    </div>
-                    </div>
-                   
-                </div>
-                </div>
-            </section>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!btnLoad">
+  <nav class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
 
-            <section class="pt-11">
-                <div class="container">
-                  <div class="row">
-                    
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb mb-0 fs-xs text-gray-400">
+            <li class="breadcrumb-item">
+              <a class="text-reset" [routerLink]="['/']">Pagina Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a class="text-reset" [routerLink]="['/stilo/tienda']">Tienda</a>
+            </li>
+            <li class="breadcrumb-item active">
+              <span>{{producto.titulo}}</span>
+            </li>
+          </ol>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <!-- PRODUCT -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-md-6">
+
+              <!-- Card -->
+              <div class="card pb-4" style="background-color: #f5f5f5;">
+
+                <!-- Badge -->
+                <div class="badge bg-primary card-badge text-uppercase">
+                  {{producto.etiqueta}}
+                </div>
+
+                <!-- Slider -->
+                <div class="" id="productSlider">
+
+                  <!-- Item -->
+                  <a *ngFor="let item of galeria" href="#"
+                    [attr.data-bigpicture]='{ "imgSrc": url+"/getProductoPortada/"+item.imagen}'>
+                    <img [src]="url+'/getProductoPortada/'+item.imagen" alt="..." class="card-img-top">
+                  </a>
+
+                  <!-- Item -->
+
+
+                </div>
+
+              </div>
+
+              <!-- Slider -->
+              <div class="flickity-nav mx-n2 mb-10 mb-md-0">
+
+                <!-- Item -->
+                <div *ngFor="let item of galeria" class="col-12 px-2" style="max-width: 113px;">
+
+                  <!-- Image -->
+                  <div class="ratio ratio-1x1 bg-cover"
+                    style="background-image: url({{url}}/getProductoPortada/{{item.imagen}});">
+
+                  </div>
+
+                </div>
+
+
+
+              </div>
+
+            </div>
+            <div class="col-12 col-md-6 ps-lg-10">
+
+              <!-- Header -->
+              <div class="row mb-1">
+                <div class="col">
+
+                  <!-- Preheading -->
+                  <a class="text-muted">{{producto.clasificacion}} - {{producto.categoria.titulo}}</a>
+
+                </div>
+                <div class="col-auto">
+
+
+
+
+                </div>
+              </div>
+
+              <!-- Heading -->
+              <h3 class="mb-2">{{producto.titulo}}</h3>
+
+              <!-- Price -->
+              <div class="mb-7">
+                <!--    <span class="fs-lg fw-bold text-gray-350 text-decoration-line-through">$115.00</span> -->
+                <span class="ms-1 fs-5 fw-bolder text-primary">{{variacionSeleccionada.precio|currency:'BOB'}}</span>
+                <span class="fs-sm ms-1" *ngIf="variciones[0].cantidades>0">
+                  {{variacionSeleccionada.cantidades}} disponibles
+                </span>
+              </div>
+
+              <!-- Form -->
+              <!-- Form ; commit 17/04/2025 ya no es estatico, ahora solo deja seleccionar cantidad  disponible en stock -->
+              <form>
+                <div class="form-group">
+                  <!-- Variaciones -->
+                  <div class="mb-2">
+                    <div (click)="seleccionVariacion(subitem)" class="form-check form-check-inline form-check-size mb-2"
+                      *ngFor="let subitem of variciones" [ngStyle]="{'background-color':subitem.hxd}"
+                      [ngClass]="{'variacionActiva':variacion._id == subitem._id}">
+                      <label class="form-check-label text-white">{{ subitem.talla }}</label>
+                    </div>
+                  </div>
+
+                  <!-- Guía de tallas -->
+                  <p class="mb-8">
+                    <a class="text-reset text-decoration-underline ms-3" data-bs-toggle="modal"
+                      href="#modalSizeChart">Guia de
+                      tallas</a>
+                  </p>
+
+                  <!-- Mensaje de alerta -->
+                  <div *ngIf="mensaje.texto" class="alert"
+                    [ngClass]="{'alert-success': mensaje.tipo == 1, 'alert-danger': mensaje.tipo == 2}" role="alert">
+                    {{ mensaje.texto }}
+                  </div>
+
+                  <!-- Cantidad + Botones -->
+                  <div class="row gx-5 mb-7">
+                    <div class="col-12 col-lg-auto">
+                      <!-- Selector de cantidad dinámico -->
+                      <select class="form-select mb-2" name="cantidad" [(ngModel)]="cantidad">
+                        <option
+                          *ngFor="let i of [].constructor(variacionSeleccionada?.cantidades || 1); let idx = index"
+                          [value]="idx + 1">
+                          {{ idx + 1 }}
+                        </option>
+                      </select>
+
+                    </div>
+
+                    <div class="col-12 col-lg">
+                      <!-- Botón usuario logueado -->
+                      <button *ngIf="user != null" (click)="addCarritoUser()" [disabled]="variacion?.stock <= 0"
+                        class="btn w-100 btn-dark mb-2">
+                        Carrito de Compras <i class="fe fe-shopping-cart ms-2"></i>
+                      </button>
+
+                      <!-- Botón usuario invitado -->
+                      <button *ngIf="user == null" (click)="addCarritoNoUser()" [disabled]="variacion?.stock <= 0"
+                        class="btn w-100 btn-dark mb-2">
+                        Carrito de Compras <i class="fe fe-shopping-cart ms-2"></i>
+                      </button>
+
+                      <!-- Mensaje si no hay stock -->
+                      <p class="text-danger mt-2" *ngIf="variacion?.stock <= 0">
+                        Producto sin stock disponible
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </section>
-    </ng-container>
-  <!-- DESCRIPTION -->
-  
-  
-  <!-- PRODUCTS -->
-  
-  
-  <!-- REVIEWS -->
+              </form>
 
-  
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-11">
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </section>
+</ng-container>
+<!-- DESCRIPTION -->
+
+
+<!-- PRODUCTS -->
+
+
+<!-- REVIEWS -->
+
+
 <app-footer></app-footer>
 <div class="modal fade" id="modalSizeChart" tabindex="-1" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-  
-        <!-- Close -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-          <i class="fe fe-x" aria-hidden="true"></i>
-        </button>
-  
-        <!-- Header-->
-        <div class="modal-header lh-fixed fs-lg">
-          <strong class="mx-auto">Carta de Tallas</strong>
-        </div>
-  
-        <!-- Body -->
-        <div class="modal-body border-bottom">
-  
-          <!-- Header -->
-          <div class="d-flex mb-7">
-  
-            <!-- Heading -->
-            <h5 class="mb-0">Ropa</h5>
-  
-            <!-- Inputs -->
-           
-  
-          </div>
-  
-          <!-- Table -->
-          <div class="table-responsive">
-            <table class="table table-bordered table-sm table-hover mb-0">
-              <thead>
-                <tr>
-                  <th>Talla</th>
-                  <th>US</th>
-                  <th>Busto</th>
-                  <th>Cintura</th>
-                  <th>Caderas</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>XS</td>
-                  <td>2</td>
-                  <td>32</td>
-                  <td>24 - 25</td>
-                  <td>33 - 34</td>
-                </tr>
-                <tr>
-                  <td>S</td>
-                  <td>4</td>
-                  <td>34 - 35</td>
-                  <td>26 - 27</td>
-                  <td>35 - 26</td>
-                </tr>
-                <tr>
-                  <td>M</td>
-                  <td>6</td>
-                  <td>36 - 37</td>
-                  <td>28 - 29</td>
-                  <td>38 - 40</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>8</td>
-                  <td>38 - 29</td>
-                  <td>30 - 31</td>
-                  <td>42 - 44</td>
-                </tr>
-                <tr>
-                  <td>XL</td>
-                  <td>10</td>
-                  <td>40 - 41</td>
-                  <td>32 - 33</td>
-                  <td>45 - 47</td>
-                </tr>
-                <tr>
-                  <td>XXL</td>
-                  <td>12</td>
-                  <td>42 - 43</td>
-                  <td>34 - 35</td>
-                  <td>48 - 50</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-  
-        </div>
-  
-        <!-- Body -->
-        
-  
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+
+      <!-- Close -->
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="fe fe-x" aria-hidden="true"></i>
+      </button>
+
+      <!-- Header-->
+      <div class="modal-header lh-fixed fs-lg">
+        <strong class="mx-auto">Carta de Tallas</strong>
       </div>
-  
+
+      <!-- Body -->
+      <div class="modal-body border-bottom">
+
+        <!-- Header -->
+        <div class="d-flex mb-7">
+
+          <!-- Heading -->
+          <h5 class="mb-0">Ropa</h5>
+
+          <!-- Inputs -->
+
+
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-hover mb-0">
+            <thead>
+              <tr>
+                <th>Talla</th>
+                <th>US</th>
+                <th>Busto</th>
+                <th>Cintura</th>
+                <th>Caderas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>XS</td>
+                <td>2</td>
+                <td>32</td>
+                <td>24 - 25</td>
+                <td>33 - 34</td>
+              </tr>
+              <tr>
+                <td>S</td>
+                <td>4</td>
+                <td>34 - 35</td>
+                <td>26 - 27</td>
+                <td>35 - 26</td>
+              </tr>
+              <tr>
+                <td>M</td>
+                <td>6</td>
+                <td>36 - 37</td>
+                <td>28 - 29</td>
+                <td>38 - 40</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>8</td>
+                <td>38 - 29</td>
+                <td>30 - 31</td>
+                <td>42 - 44</td>
+              </tr>
+              <tr>
+                <td>XL</td>
+                <td>10</td>
+                <td>40 - 41</td>
+                <td>32 - 33</td>
+                <td>45 - 47</td>
+              </tr>
+              <tr>
+                <td>XXL</td>
+                <td>12</td>
+                <td>42 - 43</td>
+                <td>34 - 35</td>
+                <td>48 - 50</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- Body -->
+
+
     </div>
+
+  </div>
 </div>

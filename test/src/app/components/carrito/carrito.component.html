@@ -1,0 +1,127 @@
+<app-navbar></app-navbar>
+    <!-- PROMO -->
+
+  <app-bar></app-bar>
+
+  <section class="pt-7 pb-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  
+          <!-- Heading -->
+          <h3 class="mb-10 text-center">Carrito de compras</h3>
+  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-7">
+  
+          <!-- List group -->
+          <ul class="list-group list-group-lg list-group-flush-x mb-6">
+            <li class="list-group-item" *ngFor="let item of carrito; let idx=index">
+              <div class="row align-items-center">
+                <div class="col-3">
+  
+                  <!-- Image -->
+                  <a href="product.html">
+                    <img *ngIf="user!=null"  [src]="url+'/getProductoPortada/'+item.producto.portada" alt="..." class="img-fluid">
+                    <img *ngIf="user==null"  [src]="url+'/getProductoPortada/'+item.portada" alt="..." class="img-fluid">
+                  </a>
+  
+                </div>
+                <div class="col">
+  
+                  <!-- Title -->
+                  <div class="d-flex mb-2 fw-bold">
+                    <a *ngIf="user!=null" class="text-body" href="product.html">{{item.producto.titulo}}</a>
+                    <a *ngIf="user==null" class="text-body" href="product.html">{{item.titulo}}</a> 
+                    <span class="ms-auto">
+                      <ng-container *ngIf="user==null" class="ms-auto">{{item.precio|currency:'BOB'}}</ng-container>
+                    <ng-container *ngIf="user!=null" class="ms-auto">{{item.producto_variedad.precio|currency:'BOB'}}</ng-container>
+                    </span>
+                    
+                    
+                  </div>
+  
+                  <!-- Text -->
+                  <p *ngIf="user!=null" class="mb-7 fs-sm text-muted">
+                    Talla: {{item.producto_variedad.talla}} <br>
+                    Color: {{item.producto_variedad.color}}
+                  </p>
+                  <p *ngIf="user==null" class="mb-7 fs-sm text-muted">
+                    Talla: {{item.talla}} <br>
+                    Color: {{item.color}}
+                  </p>
+  
+  
+                  <!--Footer -->
+                  <div class="d-flex align-items-center">
+  
+                    <!-- Select -->
+                    <select *ngIf="user!=null" class="form-select form-select-xxs w-auto" [(ngModel)]="item.cantidad" (change)="updateCantidadCliente(item._id,item.cantidad)">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+
+                    <select *ngIf="user==null" class="form-select form-select-xxs w-auto" [(ngModel)]="item.cantidad" (change)="updateCantidadVisitantes(idx,item.cantidad)">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+  
+                    <!-- Remove -->
+                    <a *ngIf="user!=null"  class="fs-xs text-gray-400 ms-auto" style="cursor: pointer;" (click)="quitProductoCarrito(item._id)">
+                      <i class="fe fe-x"></i> Eliminar
+                    </a>
+                    <a *ngIf="user==null" class="fs-xs text-gray-400 ms-auto" style="cursor: pointer;" (click)="quitProductoCarrito(idx)">
+                      <i class="fe fe-x"></i> Eliminar
+                    </a>
+  
+                  </div>
+  
+                </div>
+              </div>
+            </li>
+            
+          </ul>
+  
+          
+  
+        </div>
+        <div class="col-12 col-md-5 col-lg-4 offset-lg-1">
+  
+          <!-- Total -->
+          <div class="card mb-7 bg-light" style="background: #fff !important;">
+            <div class="card-body">
+              <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                <li class="list-group-item d-flex">
+                  <span>Subtotal</span> <span class="ms-auto fs-sm">{{total|currency:'BOB'}}</span>
+                </li>
+                
+                <li class="list-group-item d-flex fs-lg fw-bold">
+                  <span>Total</span> <span class="ms-auto fs-sm">{{total|currency:'BOB'}}</span>
+                </li>
+              
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Button -->
+          <a class="btn w-100 btn-dark mb-2" [routerLink]="['/checkout']">Proceder al checkout</a>
+  
+          <!-- Link -->
+          <a class="btn btn-link btn-sm px-0 text-body" [routerLink]="['/stilo/tienda']">
+            <i class="fe fe-arrow-left me-2"></i> Continuar comprando
+          </a>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>

@@ -1,0 +1,256 @@
+<div class="navbar navbar-topbar navbar-expand-xl navbar-light bg-light">
+    <div class="container">
+  
+      <!-- Promo -->
+      <div class="me-xl-8">
+        <i class="fe fe-truck me-2"></i> <span class="heading-xxxs">Free shipping worldwide</span>
+      </div>
+  
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topbarCollapse" aria-controls="topbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="topbarCollapse">
+  
+        <!-- Nav -->
+        <ul class="nav nav-divided navbar-nav me-auto">
+          
+          
+         
+        </ul>
+  
+        <!-- Nav -->
+        <ul class="nav navbar-nav me-8">
+         
+          <li class="nav-item">
+            <a class="nav-link" href="./faq.html">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact-us.html">Contactanos</a>
+          </li>
+        </ul>
+  
+        <!-- Nav -->
+       
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+  
+      <!-- Brand -->
+      <a class="navbar-brand" [routerLink]="['/']">
+        Stilo.
+      </a>
+  
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+  
+        <!-- Nav -->
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" [routerLink]="['/']">Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" [routerLink]="['/tienda']">Tienda</a>
+          </li>
+        </ul>
+  
+        <!-- Nav -->
+        <ul class="navbar-nav flex-row">
+          
+          <li class="nav-item ms-lg-n4">
+            <a *ngIf="user==null" class="nav-link" [routerLink]="['/login']">
+              <i class="fe fe-user"></i>
+            </a>
+            <a *ngIf="user!=null" class="nav-link" [routerLink]="['/cuenta/',user._id]">
+              <i class="fe fe-user"></i> {{user.nombres.trim().split(' ')[0]}}
+              
+            </a>
+            
+          </li>
+          <li *ngIf="user!=null" class="nav-item ms-lg-n4">
+            <a class="nav-link"  (click)="logout()">
+              <i class="fe fe-log-out"> cerra sesion</i>
+            </a>
+         
+          <li class="nav-item ms-lg-n4">
+            <a class="nav-link" data-bs-toggle="offcanvas" href="#modalShoppingCart">
+              <span [attr.data-cart-items]="carrito.length">
+                <i class="fe fe-shopping-cart"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+  
+      </div>
+  
+    </div>
+  </nav>
+
+  <div class="offcanvas offcanvas-end " id="modalShoppingCart" tabindex="-1" role="dialog" aria-modal="true" style="visibility: visible;overflow: hidden !important;">
+    
+    <!-- Full cart (add `.d-none` to disable it) -->
+  
+    <!-- Close -->
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fe fe-x" aria-hidden="true"></i>
+    </button>
+  
+    <!-- Header-->
+    <div class="offcanvas-header lh-fixed fs-lg">
+      <strong class="mx-auto">Tu Carrito ({{carrito.length}})</strong>
+    </div>
+  
+    <!-- List group -->
+    <ul class="list-group list-group-lg list-group-flush" *ngIf="user==null" style="overflow-y: auto !important;">
+      <ng-container *ngFor="let item of carrito;let idx=index">
+        <li class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col-4">
+    
+              <!-- Image -->
+              <a [routerLink]="['/'+item.slug]">
+                <img class="img-fluid" [src]="url+'/getProductoPortada/'+item.portada" alt="...">
+              </a>
+    
+            </div>
+            <div class="col-8">
+    
+              <!-- Title -->
+              <p class="fs-sm fw-bold mb-6">
+                <a class="text-body" href="./product.html">{{item.titulo}}</a> <br>
+                <span class="text-muted">{{item.precio|currency:'BOB'}}</span>
+              </p>
+    
+              <!--Footer -->
+              <div class="d-flex align-items-center">
+    
+                <!-- Select -->
+                <select disabled="" class="form-select form-select-xxs w-auto"name="cantidad" [(ngModel)]="item.cantidad" >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+    
+                <!-- Remove -->
+                <a class="fs-xs text-gray-400 ms-auto " style="cursor: pointer !important;" (click)="quitProductoCarrito(idx)">
+                  <i class="fe fe-x"></i> Eliminar
+                </a>
+    
+              </div>
+    
+            </div>
+          </div>
+        </li>
+      </ng-container>
+      
+    </ul>
+    
+  
+    <ng-container  *ngIf="user!=null" >
+      <ul *ngIf="!loadCarrito" class="list-group list-group-lg list-group-flush" style="overflow-y: auto !important;">
+        <ng-container *ngFor="let item of carrito">
+          <li class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-4">
+      
+                <!-- Image -->
+                <a [routerLink]="['/'+item.producto.slug]">
+                  <img class="img-fluid" [src]="url+'/getProductoPortada/'+item.producto.portada" alt="...">
+                </a>
+      
+              </div>
+              <div class="col-8">
+      
+                <!-- Title -->
+                <p class="fs-sm fw-bold mb-6">
+                  <a class="text-body" href="./product.html">{{item.titulo}}</a> <br>
+                  <span class="text-muted">{{item.producto_variedad.precio|currency:'BOB'}}</span>
+                </p>
+      
+                <!--Footer -->
+                <div class="d-flex align-items-center">
+      
+                  <!-- Select -->
+                  <select disabled="" class="form-select form-select-xxs w-auto"name="cantidad" [(ngModel)]="item.cantidad" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+      
+                  <!-- Remove -->
+                  <a style="cursor: pointer;" class="fs-xs text-gray-400 ms-auto" (click)="quitProductoCarrito(item._id)">
+                    <i class="fe fe-x"></i> Eliminar
+                  </a>
+      
+                </div>
+      
+              </div>
+            </div>
+          </li>
+        </ng-container>
+        
+      </ul>
+      <div class="text-center" *ngIf="loadCarrito">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </ng-container>
+
+    
+    <!-- Footer -->
+    <div class="offcanvas-footer justify-between lh-fixed fs-sm bg-light mt-auto">
+      <strong>Subtotal</strong> <strong class="ms-auto">{{total|currency:'BOB'}}</strong>
+    </div>
+  
+    <!-- Buttons -->
+    <div class="offcanvas-body">
+      <a class="btn w-100 btn-dark" [routerLink]="['/checkout']">Checkout</a>
+      <button class="btn w-100 btn-outline-dark mt-2" (click)="redirectCarrito('/carrito')" >Ver Carrito</button>
+    </div>
+  
+    <!-- Empty cart (remove `.d-none` to enable it) -->
+    <div class="d-none">
+  
+      <!-- Close -->
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+        <i class="fe fe-x" aria-hidden="true"></i>
+      </button>
+  
+      <!-- Header-->
+      <div class="offcanvas-header lh-fixed fs-lg">
+        <strong class="mx-auto">Your Cart (0)</strong>
+      </div>
+  
+      <!-- Body -->
+      <div class="offcanvas-body flex-grow-0 my-auto">
+  
+        <!-- Heading -->
+        <h6 class="mb-7 text-center">Your cart is empty 😞</h6>
+  
+        <!-- Button -->
+        <a class="btn w-100 btn-outline-dark" href="#!">
+          Continue Shopping
+        </a>
+  
+      </div>
+  
+    </div>
+  
+</div>

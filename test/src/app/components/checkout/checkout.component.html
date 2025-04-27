@@ -1,0 +1,315 @@
+<app-navbar></app-navbar>
+<app-bar></app-bar>
+
+<!-- BREADCRUMB -->
+<nav class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb mb-0 fs-xs text-gray-400">
+            <li class="breadcrumb-item active">
+                <a [routerLink]="['/']">
+                    Inicio
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                Checkout
+            </li>
+          </ol>
+  
+        </div>
+      </div>
+    </div>
+</nav>
+
+<section class="pt-7 pb-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+
+          <!-- Heading -->
+          <h3 class="mb-4">Resumen de pedido</h3>
+
+          <!-- Subheading -->
+          <p class="mb-10" *ngIf="user == null">
+            Tienes una cuenta? <a class="fw-bold text-reset" [routerLink]="['/login']" routerLinkActive="router-link-active" >Iniciar sesión</a>
+          </p>
+          <p class="mb-10" *ngIf="user != null">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, esse!
+          </p>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-7">
+
+          <!-- Form -->
+          <form>
+
+            <h6 class="mb-7">Direcciones Disponibles</h6>
+
+            <div class="row mb-5">
+                <div class="col-lg-6 col-md-12" *ngFor="let item of direcciones; let idx = index">
+                    <div class="card card-lg bg-white mb-8" [ngClass]="{'direccion-selected': item._id == direccion_selected._id}">
+                        <div class="card-body">
+                      
+                          <!-- Heading -->
+                          <h6 class="mb-6">
+                            Dirección {{idx+1}}
+                          </h6>
+                      
+                          <!-- Text -->
+                          <p class="text-muted mb-0">
+                            {{item.nombres}} {{item.apellidos}} <br>
+                            {{item.address}} <br>
+                            {{item.postcode}} <br>
+                            {{item.country}} <br>
+                            {{item.prefijo}} {{item.telefono}}
+                          </p>
+                      
+                          <!-- Action -->
+                          <div class="card-action card-action-end">
+                            <!-- Button -->
+                            <button class="btn btn-xs btn-circle btn-primary" 
+                            (click)="select_direccion(item)">
+                              <i class="fe fe-check"></i>
+                            </button>
+                      
+                          </div>
+                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heading -->
+            <h6 class="mb-7">Envío</h6>
+
+            <!-- Shipping details -->
+            <div class="table-responsive mb-6">
+              <table class="table table-bordered table-sm table-hover mb-0 bg-white">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-check custom-radio">
+                        <input (change)="setEnvio()" value="20" class="form-check-input" id="checkoutShippingStandard" name="envio" [(ngModel)]="envio" type="radio">
+                        <label class="form-check-label text-body text-nowrap" for="checkoutShippingStandard">
+                          Envio estandar
+                        </label>
+                      </div>
+                    </td>
+                    <td>Entrega en 5 - 7 días laborables</td>
+                    <td>BOB20.00</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check custom-radio">
+                        <input (change)="setEnvio()" value="35" class="form-check-input" id="checkoutShippingExpress" name="envio" [(ngModel)]="envio" type="radio">
+                        <label class="form-check-label text-body text-nowrap" for="checkoutShippingExpress">
+                         Envio Express 
+                        </label>
+                      </div>
+                    </td>
+                    <td>Entrega en 3 - 5 días laborables</td>
+                    <td>BOB35.00</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check custom-radio">
+                        <input (change)="setEnvio()" value="50" class="form-check-input" id="checkoutShippingShort" name="envio" [(ngModel)]="envio" type="radio">
+                        <label class="form-check-label text-body text-nowrap" for="checkoutShippingShort">
+                          1 - 2 Envios
+                        </label>
+                      </div>
+                    </td>
+                    <td>Entrega en 1 - 2 días laborables</td>
+                    <td>BOB50.00</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check custom-radio">
+                        <input (change)="setEnvio()" value="0" class="form-check-input" id="checkoutShippingFree" name="envio" [(ngModel)]="envio" type="radio">
+                        <label class="form-check-label text-body text-nowrap" for="checkoutShippingFree">
+                          Envio Gratis
+                        </label>
+                      </div>
+                    </td>
+                    <td>Entrega en 30 - 60 días laborables</td>
+                    <td>BOB0.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-9">
+
+              <!-- Checkbox -->
+             
+
+              <!-- Collapse -->
+              <div class="collapse" id="checkoutShippingAddressCollapse">
+                <div class="row mt-6">
+                  <div class="col-12">
+
+                    <!-- Country -->
+                    <div class="form-group">
+                      <label class="form-label" for="checkoutShippingAddressCountry">Country *</label>
+                      <input class="form-control form-control-sm" id="checkoutShippingAddressCountry" type="text" placeholder="Country">
+                    </div>
+
+                  </div>
+                  <div class="col-12">
+
+                    <!-- Address Line 1 -->
+                    <div class="form-group">
+                      <label class="form-label" for="checkoutShippingAddressLineOne">Address Line 1 *</label>
+                      <input class="form-control form-control-sm" id="checkoutShippingAddressLineOne" type="text" placeholder="Address Line 1">
+                    </div>
+
+                  </div>
+                  <div class="col-12">
+
+                    <!-- Address Line 2 -->
+                    <div class="form-group">
+                      <label class="form-label" for="checkoutShippingAddressLineTwo">Address Line 2</label>
+                      <input class="form-control form-control-sm" id="checkoutShippingAddressLineTwo" type="text" placeholder="Address Line 2 (optional)">
+                    </div>
+
+                  </div>
+                  <div class="col-6">
+
+                    <!-- Town / City -->
+                    <div class="form-group">
+                      <label class="form-label" for="checkoutShippingAddressTown">Town / City *</label>
+                      <input class="form-control form-control-sm" id="checkoutShippingAddressTown" type="text" placeholder="Town / City">
+                    </div>
+
+                  </div>
+                  <div class="col-6">
+
+                    <!-- Town / City -->
+                    <div class="form-group">
+                      <label class="form-label" for="checkoutShippingAddressZIP">ZIP / Postcode *</label>
+                      <input class="form-control form-control-sm" id="checkoutShippingAddressZIP" type="text" placeholder="ZIP / Postcode">
+                    </div>
+
+                  </div>
+                  <div class="col-12">
+
+                    <!-- Button -->
+                    <button class="btn btn-sm btn-outline-dark" type="submit">
+                      Save Address
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            
+
+          </form>
+
+        </div>
+        <div class="col-12 col-md-5 col-lg-4 offset-lg-1">
+            <h6 class="mb-7">Productos ({{carrito.length}})</h6>
+
+            <!-- Divider -->
+            <hr class="my-7">
+          <!-- Heading -->
+         <div class="card-producto" style="max-height: 350px; overflow-y: auto; overflow-x: hidden;">
+            
+  
+            <!-- List group -->
+            <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
+              <li class="list-group-item" *ngFor="let item of carrito">
+                <div class="row align-items-center">
+                  <div class="col-4">
+  
+                    <!-- Image -->
+                    <a href="product.html">
+                      <img [src]="url+'/getProductoPortada/'+item.producto.portada" alt="..." class="img-fluid">
+                    </a>
+  
+                  </div>
+                  <div class="col">
+  
+                    <!-- Title -->
+                    <p class="mb-4 fs-sm fw-bold">
+                      <a  class="text-body" href="product.html">{{item.producto.titulo}}</a> <br>
+                      <span class="text-muted">{{item.producto_variedad.precio|currency:'BOB'}}</span>
+                    </p>
+  
+                    <!-- Text -->
+                    <div class="fs-sm text-muted">
+                      Talla: {{item.producto_variedad.talla}} <br>
+                      Color: {{item.producto_variedad.color}} <br>
+                      Cantidad: {{item.cantidad}}
+                    </div>
+  
+                  </div>
+                </div>
+              </li>
+              
+            </ul>
+         </div>
+
+          <!-- Card -->
+          <div class="card mb-9 bg-white">
+            <div class="card-body">
+              <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                <li class="list-group-item d-flex">
+                  <span>Subtotal</span> <span class="ms-auto fs-sm">{{subtotal|currency:'BOB'}}</span>
+                </li>
+                <li class="list-group-item d-flex">
+                  <span>Envío</span> <span class="ms-auto fs-sm">{{envio|currency:'BOB'}}</span>
+                </li>
+                <li class="list-group-item d-flex">
+                  <span>Descuento</span> <span class="ms-auto fs-sm text-danger">-{{descuento|currency:'BOB'}}</span>
+                </li>
+                <li class="list-group-item d-flex fs-lg fw-bold">
+                  <span>Total</span> <span class="ms-auto">{{total|currency:'BOB'}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row mb-9">
+              <div class="col">
+                <input name="codigo" [(ngModel)]="codigo" type="text" class="form-control" placeholder="Código de descuento">
+              </div>
+              <div class="col-auto">
+                <button (click)="aplicarCupon()" class="btn btn-dark">Aplicar</button>
+              </div>
+              <div *ngIf="msmCupon" class="col-12 text-center">
+                <span class="text-danger">{{msmCupon}}</span>
+              </div>
+          </div>
+          <!-- Disclaimer -->
+          <p class="mb-7 fs-xs text-gray-500">
+            Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este sitio web y para otros fines descritos en nuestra política de privacidad.
+          </p>
+          <div>
+            <button class="btn btn-dark mb-5" (click)="pagar()">Confirmar pedido</button>
+          </div>
+
+          <!-- Button -->
+          <div id="paypal-button-container">
+
+          </div>
+
+          <div class="text-center" *ngIf="msm_errorVenta">
+              <span class="text-danger">{{msm_errorVenta}}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+<app-footer></app-footer>

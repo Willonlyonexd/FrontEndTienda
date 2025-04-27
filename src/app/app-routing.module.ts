@@ -25,7 +25,8 @@ const routes: Routes = [
 
   {path:'carrito',component:CarritoComponent},
   {path:'checkout',component:CheckoutComponent},
- 
+  { path: 'producto/:id', component: ProductoComponent },
+
   
  
 ];
