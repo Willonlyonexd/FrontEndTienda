@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { GLOBAL } from './GLOBAL';
 import { Observable } from 'rxjs';
@@ -29,9 +29,12 @@ export class VisitanteService {
   }
 
 
-  getProductosTienda():Observable<any>{
+  getProductosTienda(page: number, limit: number ):Observable<any>{
     let headers= new HttpHeaders().set('Content-Type','application/json')
-    return this._http.get(this.url+'/getProductosTienda/',{headers:headers})
+    let params = new HttpParams()
+    .set('page', page)
+    .set('limit', limit);
+    return this._http.get(this.url+'/getProductosTienda/',{headers:headers,params: params})
   }
 
   getCategoriasTienda(clasificacion:any):Observable<any>{
@@ -52,4 +55,21 @@ export class VisitanteService {
   eventoCarrito(){
     this.eventCart.emit(true)
   }
+
+
+  getProductosPopulares():Observable<any>{
+    let headers= new HttpHeaders().set('Content-Type','application/json')
+    return this._http.get(this.url+'/api/recomendaciones/populares',{headers:headers})
+  }
+
+  getProductoPopularPorCliente(cliente_id:any):Observable<any>{
+    let headers= new HttpHeaders().set('Content-Type','application/json')
+    return this._http.get(this.url+'/api/recomendaciones/'+cliente_id,{headers:headers})
+  }
+
+  obtenerProductosPorArrayDeIds(data:any):Observable<any>{
+    let headers= new HttpHeaders().set('Content-Type','application/json')
+    return this._http.post(this.url+'/getProductosByArrayId',data,{headers:headers})
+  }
+
 }

@@ -1,3 +1,237 @@
 .border-50{
     border-radius: 50% !important;
 }
+/* ====== ESTILOS GENERALES DEL CARRUSEL ====== */
+.carousel {
+  position: relative;
+  margin-bottom: 60px; /* Espacio para los indicadores abajo */
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  padding: 15px 0;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* ====== ESTILOS DE LAS TARJETAS DE PRODUCTOS ====== */
+.card {
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Botón de detalles */
+.btn-primary {
+  background-color: #ff6b6b;
+  border-color: #ff6b6b;
+  margin-top: auto;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #ff5252;
+  border-color: #ff5252;
+  transform: translateY(-2px);
+}
+
+/* Badges (etiquetas de oferta, etc) */
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* ====== FLECHAS DE NAVEGACIÓN SIN FONDO ====== */
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: transparent !important; /* Elimina el fondo gris */
+  width: 5%; /* Ajusta el ancho de la zona clickable */
+  opacity: 1;
+  z-index: 10;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.6); /* Color de fondo del círculo */
+  border-radius: 50%; /* Hacer circular */
+  width: 40px;
+  height: 40px;
+  background-size: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Efectos al pasar el ratón */
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.8); /* Oscurecer al hover */
+  transform: scale(1.1); /* Ligero efecto de escala */
+}
+
+/* Clase personalizada para las flechas */
+.custom-arrow {
+  background-color: transparent !important;
+  border: none;
+  outline: none !important;
+}
+
+/* ====== INDICADORES DEL CARRUSEL (PUNTOS) ====== */
+.carousel-indicators {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel-indicators button {
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background-color: #007bff;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ====== ESTILOS RESPONSIVOS ====== */
+@media (max-width: 992px) {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item .row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 10%;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .card-img-top {
+    height: 180px;
+  }
+}
+
+/* ====== ANIMACIONES ====== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.carousel-item.active {
+  animation: fadeIn 0.5s;
+}
+
+
+/* Estilos específicos para el carrusel de recomendados */
+#carouselRecomendados .badge {
+  background-color: #28a745 !important;
+}
+
+#carouselRecomendados .btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+#carouselRecomendados .btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+#carouselRecomendados .carousel-indicators button.active {
+  background-color: #28a745;
+}
+
+/* Establecer un estilo diferente para los indicadores del segundo carrusel */
+#carouselRecomendados .carousel-indicators {
+  bottom: -40px;
+}
+
+/* Asegurar que los indicadores de cada carrusel no interfieran entre sí */
+#carouselProductos {
+  margin-bottom: 50px;
+}
+
+#carouselRecomendados {
+  margin-bottom: 50px;
+}

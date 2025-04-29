@@ -9,21 +9,21 @@
         <div class="container d-flex flex-column">
             <div class="row align-items-center py-12" style="min-height: 550px;">
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 offset-md-1">
-    
+
                 <!-- Heading -->
                 <h1>Venta de verano</h1>
-    
+
                 <!-- Heading -->
                 <h2 class="display-1 text-primary">-70%</h2>
-    
+
                 <!-- Heading -->
-                
-    
+
+
                 <!-- Button -->
                 <a class="btn btn-dark" [routerLink]="['/tienda']">
                 Compra ahora <i class="fe fe-arrow-right ms-2"></i>
                 </a>
-    
+
             </div>
             </div>
         </div>
@@ -32,28 +32,158 @@
         <div class="container d-flex flex-column">
             <div class="row align-items-center py-12" style="min-height: 550px;">
                 <div class="col-12 text-center text-white">
-    
+
                     <!-- Preheading -->
                     <h4 class="mb-0">Summer Styles</h4>
-    
+
                     <!-- Heading -->
                     <h1 class="display-1">
                       50% OFF
                     </h1>
-    
+
                     <!-- Links -->
                     <p class="mb-0">
                       <a href="shop.html" class="link-underline text-reset mx-4 my-4">Shop Women</a>
                       <a href="shop.html" class="link-underline text-reset mx-4 my-4">Shop Men</a>
                     </p>
-    
+
                 </div>
             </div>
         </div>
     </div></div>
-      
+
     </div>
   </div>
+
+  <!-- PRODUCTOS POPULARES -->
+
+
+  <!-- PRODUCTOS POPULARES -->
+      <!-- PRODUCTOS POPULARES -->
+<div class="container py-5" *ngIf="slideIndices.length>0" >
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h2>PRODUCTOS POPULARES</h2>
+    </div>
+  </div>
+
+  <!-- Carrusel con 5 slides de 2 productos cada uno -->
+  <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <button type="button" *ngFor="let i of slideIndices"
+              data-bs-target="#carouselProductos"
+              [attr.data-bs-slide-to]="i"
+              [class.active]="i === 0"
+              [attr.aria-label]="'Slide ' + (i+1)"></button>
+    </div>
+
+    <!-- Contenido del carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let i of slideIndices; let first = first"
+           [class.active]="first">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5" *ngFor="let producto of getProductosGrupo(i)">
+            <div class="card h-100 mb-4">
+              <!-- Etiqueta del producto -->
+              <div class="badge bg-danger position-absolute" style="top: 10px; right: 10px">
+                {{producto.producto.etiqueta || 'Nuevo'}}
+              </div>
+
+              <!-- Imagen del producto -->
+              <img
+              [src]="url+'/getProductoImagenes/'+producto.producto.portada"
+              class="card-img-top"
+              style="height: 250px; object-fit: cover;">
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{producto.producto.titulo}}</h5>
+                <p class="card-text">{{producto.producto.categoria.titulo}}</p>
+                <a [routerLink]="['/producto', producto.producto.slug]"
+                   class="btn btn-primary mt-auto">Ver detalles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles del carousel - GRANDES Y VISIBLES -->
+    <button class="carousel-control-prev custom-arrow" type="button"
+    data-bs-target="#carouselProductos" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Anterior</span>
+</button>
+<button class="carousel-control-next custom-arrow" type="button"
+    data-bs-target="#carouselProductos" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Siguiente</span>
+</button>
+  </div>
+</div>
+
+<!-- PRODUCTOS RECOMENDADOS PARA TI -->
+<div class="container py-5" *ngIf="cliente && clientearrayProductos.length > 0">
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h2>RECOMENDADOS PARA TI</h2>
+    </div>
+  </div>
+
+  <!-- Carrusel de productos recomendados -->
+  <div id="carouselRecomendados" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <button type="button" *ngFor="let i of clienteSlideIndices"
+              data-bs-target="#carouselRecomendados"
+              [attr.data-bs-slide-to]="i"
+              [class.active]="i === 0"
+              [attr.aria-label]="'Slide ' + (i+1)"></button>
+    </div>
+
+    <!-- Contenido del carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let i of clienteSlideIndices; let first = first"
+           [class.active]="first">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5" *ngFor="let producto of getProductosClienteGrupo(i)">
+            <div class="card h-100 mb-4">
+              <!-- Etiqueta del producto -->
+              <div class="badge bg-success position-absolute" style="top: 10px; right: 10px">
+                {{producto.producto.etiqueta || 'Recomendado'}}
+              </div>
+
+              <!-- Imagen del producto -->
+              <img
+              [src]="url+'/getProductoImagenes/'+producto.producto.portada"
+              class="card-img-top"
+                   style="height: 250px; object-fit: cover;">
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{producto.producto.titulo}}</h5>
+                <p class="card-text">{{producto.producto.categoria.titulo}}</p>
+                <a [routerLink]="['/producto', producto.producto.slug]"
+                   class="btn btn-success mt-auto">Ver detalles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles del carousel - SIN FONDO GRIS -->
+    <button class="carousel-control-prev custom-arrow" type="button"
+            data-bs-target="#carouselRecomendados" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next custom-arrow" type="button"
+            data-bs-target="#carouselRecomendados" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</div>
 
   <div style="background-color: aliceblue;">
       <div class="container py-10">
@@ -88,7 +218,7 @@
               </a>
           </div>
         </div>
-       
+
       </div>
   </div>
 </div>

@@ -19,11 +19,17 @@ export class TiendaComponent {
   public queryCategorias:Array<any>=[]
   public precio=''
   public tenant=''
+  public loadData=false
+  public page:number=1
+  public limit:number=8
+  public totalProductos:number=0
+  public totalPages:number=0
+
   constructor(
     private _visitanteService: VisitanteService,
     private _router: Router,
     private _route: ActivatedRoute
-  
+
   ){ }
 
   ngOnInit(): void {
@@ -42,26 +48,42 @@ export class TiendaComponent {
       this.precio=params['precio'].split(',')
      }
      this.initData()
-     
+
     })
   }
 
   initData(){
-    this._visitanteService.getProductosTienda().subscribe(
-      response=>{
-        
-        this.productos=response.data
-        console.log(this.productos)
-        this.producto_const=response.data
-        this.initOrden()
-        this.initFiltro()
-      },
-      error=>{
-        console.log(error)
-      }
-    )
-  }
+    this.loadData = false;
 
+
+    this._route.queryParams.subscribe(params => {
+      if(params['page']) {
+        this.page = parseInt(params['page']);
+      } else {
+        this.page = 1;
+      }
+
+      this._visitanteService.getProductosTienda(
+        this.page,
+        this.limit,
+
+      ).subscribe(
+        response => {
+          this.loadData = true;
+          this.productos = response.data;
+          this.producto_const = response.data;
+          this.totalProductos = response.total;
+          this.totalPages = Math.ceil(this.totalProductos / this.limit);
+
+          this.initFiltro();
+        },
+        error => {
+          this.loadData = true;
+          console.log(error);
+        }
+      );
+    });
+  }
 
   setOrdenarPor(ordenarPor:any){
     this.ordenarPor=ordenarPor
@@ -70,13 +92,16 @@ export class TiendaComponent {
   }
 
 
-  redirect(){
-    this._router.navigate(['tienda'],{queryParams:{
-      ordenarPor:this.ordenarPor,
-      genero:this.genero,
-      categorias:this.queryCategorias.join(','),
-      precio:this.precio
-    }})
+  redirect() {
+    this._router.navigate(['tienda'], {
+      queryParams: {
+        ordenarPor: this.ordenarPor,
+        genero: this.genero,
+        categorias: this.queryCategorias.join(','),
+        precio: this.precio,
+        page: this.page
+      }
+    });
   }
 
   initOrden(){
@@ -104,9 +129,34 @@ export class TiendaComponent {
   }
 
 
+
+
   setCategoria(){
     this.queryCategorias=this.categorias.filter(item=>item.seleccion==true).map(item=>item._id)
     this.redirect()
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.page = page;
+      this.redirect();
+    }
+  }
+
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.redirect();
+    }
+  }
+
+
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.redirect();
+    }
   }
 
   initFiltro(){
@@ -154,12 +204,12 @@ export class TiendaComponent {
   initCategoria(){
     this._visitanteService.getCategoriasTienda(this.genero).subscribe(
       response=>{
-        
+
         this.categorias=response.data
         if(this.queryCategorias.length==0){
           for(let item of this.categorias){
             item.seleccion=true
-          }  
+          }
         }else{
           for(let item of this.categorias){
             for(let id of this.queryCategorias){
@@ -167,7 +217,7 @@ export class TiendaComponent {
                 item.seleccion=true
               }
           }
-        
+
         }
       }
        this.setCategoria()
@@ -181,11 +231,11 @@ export class TiendaComponent {
   seleccion(event:any,idx:any){
 
     this.categorias[idx].seleccion=event.target.checked
-   
+
   }
-  
+
   selectPrecio(event:any){
-  
+
 
     let chks=document.querySelectorAll('.chk-precio')
     chks.forEach((element:any)=>{
