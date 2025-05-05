@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { VisitanteService } from '../../services/visitante.service';
 import { GLOBAL } from '../../services/GLOBAL';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tienda',
@@ -25,6 +25,7 @@ export class TiendaComponent {
   public totalProductos:number=0
   public totalPages:number=0
 
+  private queryParamsSubscription: Subscription | null = null;
   constructor(
     private _visitanteService: VisitanteService,
     private _router: Router,
@@ -33,56 +34,73 @@ export class TiendaComponent {
   ){ }
 
   ngOnInit(): void {
-    this._route.queryParams.subscribe(params=>{
-     if(params['ordenarPor']){
-      this.ordenarPor=params['ordenarPor']
-     }
-     if(params['genero']){
-      this.genero=params['genero']
-      this.initCategoria()
-     }
-     if(params['categorias']){
-      this.queryCategorias=params['categorias'].split(',')
-     }
-     if(params['precio']){
-      this.precio=params['precio'].split(',')
-     }
-     this.initData()
+    // Una única suscripción a queryParams
+    this.queryParamsSubscription = this._route.queryParams.subscribe(params => {
+      // Actualiza todos los parámetros
+      if (params['ordenarPor']) {
+        this.ordenarPor = params['ordenarPor'];
+      }
 
-    })
-  }
+      if (params['genero']) {
+        this.genero = params['genero'];
+      }
 
-  initData(){
-    this.loadData = false;
+      if (params['categorias']) {
+        this.queryCategorias = params['categorias'].split(',');
+      } else {
+        this.queryCategorias = [];
+      }
 
+      if (params['precio']) {
+        this.precio = params['precio'];
+      }
 
-    this._route.queryParams.subscribe(params => {
-      if(params['page']) {
+      if (params['page']) {
         this.page = parseInt(params['page']);
       } else {
         this.page = 1;
       }
 
-      this._visitanteService.getProductosTienda(
-        this.page,
-        this.limit,
+      // Carga las categorías si es necesario
+      if (params['genero']) {
+        this.initCategoria();
+      }
 
-      ).subscribe(
-        response => {
-          this.loadData = true;
-          this.productos = response.data;
-          this.producto_const = response.data;
-          this.totalProductos = response.total;
-          this.totalPages = Math.ceil(this.totalProductos / this.limit);
-
-          this.initFiltro();
-        },
-        error => {
-          this.loadData = true;
-          console.log(error);
-        }
-      );
+      // Carga los datos una sola vez
+      this.loadProductos();
     });
+  }
+
+  ngOnDestroy(): void {
+
+    if (this.queryParamsSubscription) {
+      this.queryParamsSubscription.unsubscribe();
+    }
+  }
+
+  loadProductos() {
+    this.loadData = false;
+
+    this._visitanteService.getProductosTienda(
+      this.page,
+      this.limit
+    ).subscribe(
+      response => {
+        console.log(response);
+        this.loadData = true;
+        this.productos = response.data;
+        this.producto_const = response.data;
+        this.totalProductos = response.total;
+        this.totalPages = Math.ceil(this.totalProductos / this.limit);
+
+        this.initOrden();
+        this.initFiltro();
+      },
+      error => {
+        this.loadData = true;
+        console.log(error);
+      }
+    );
   }
 
   setOrdenarPor(ordenarPor:any){
