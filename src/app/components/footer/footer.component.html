@@ -1,93 +1,128 @@
-<footer class="bg-dark bg-cover " style="background-image: url(./assets/img/patterns/pattern-2.svg)">
-    <div class="py-12 border-bottom border-gray-700">
-      <div class="container">
-        
-        <div class="row">
-          <div class="col-12 col-md-3">
-  
-            <!-- Heading -->
-            <h4 class="mb-6 text-white">Stilo.</h4>
-  
-            <!-- Social -->
-          
-  
+<footer class="bg-dark bg-cover" style="background-image: url(./assets/img/patterns/pattern-2.svg)">
+  <div class="py-12 border-bottom border-gray-700">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12 col-md-3">
+
+          <!-- Logo en el footer -->
+          <div class="mb-6">
+            <!-- Spinner mientras carga -->
+            <div *ngIf="loadingLogo" class="spinner-border spinner-border-sm text-light" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+
+            <!-- Logo personalizado cuando está disponible -->
+            <a [routerLink]="['/']" class="d-block mb-4">
+              <img *ngIf="!loadingLogo && logo" [src]="logo" alt="Logo de la tienda" class="footer-logo">
+              <!-- Texto alternativo si no hay logo -->
+              <h4 *ngIf="!loadingLogo && !logo" class="text-white">Stilo.</h4>
+            </a>
           </div>
-          <div class="col-6 col-sm">
-  
-            <!-- Heading -->
-            <h6 class="heading-xxs mb-4 text-white">
-              Ayuda
-            </h6>
-  
-            <!-- Links -->
-            <ul class="list-unstyled mb-7 mb-sm-0">
-              
-              <li>
-                <a class="text-gray-300" href="./faq.html">FAQs</a>
-              </li>
-             
-              <li>
-                <a class="text-gray-300" href="./shipping-and-returns.html">Envio & Retorno</a>
-              </li>
-            </ul>
-  
+
+          <!-- Social -->
+          <div class="mb-4" *ngIf="!loadingContacto && contacto">
+            <div class="row">
+              <div class="col-auto">
+                <a *ngIf="contacto?.facebook" [href]="contacto.facebook" target="_blank" class="text-gray-300 me-2">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a *ngIf="contacto?.instagram" [href]="contacto.instagram" target="_blank" class="text-gray-300 me-2">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a *ngIf="contacto?.twitter" [href]="contacto.twitter" target="_blank" class="text-gray-300 me-2">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a *ngIf="contacto?.tiktok" [href]="contacto.tiktok" target="_blank" class="text-gray-300 me-2">
+                  <i class="fab fa-tiktok"></i>
+                </a>
+              </div>
+            </div>
           </div>
-         
-          <div class="col-6 col-sm">
-  
-            <!-- Heading -->
-            <h6 class="heading-xxs mb-4 text-white">
-              Compañia
-            </h6>
-  
-            <!-- Links -->
-            <ul class="list-unstyled mb-0">
-             
-              <li>
-                <a class="text-gray-300" href="#!">Terminos y condiciones</a>
-              </li>
-              <li>
-                <a class="text-gray-300" href="#!">Privacidad & Cookie policy</a>
-              </li>
-            </ul>
-  
-          </div>
-          <div class="col-6 col-sm">
-  
-            <!-- Heading -->
-            <h6 class="heading-xxs mb-4 text-white">
-              Contacto
-            </h6>
-  
-            <!-- Links -->
-            <ul class="list-unstyled mb-0">
-             
-              <li>
-                <a class="text-gray-300" >Ronald CP
+
+        </div>
+
+        <!-- El resto del footer permanece igual -->
+        <div class="col-6 col-sm">
+          <!-- Heading -->
+          <h6 class="heading-xxs mb-4 text-white">
+            Ayuda
+          </h6>
+
+          <!-- Links -->
+          <ul class="list-unstyled mb-7 mb-sm-0">
+            <li>
+              <a class="text-gray-300" href="./faq.html">FAQs</a>
+            </li>
+            <li>
+              <a class="text-gray-300" href="./shipping-and-returns.html">Envio & Retorno</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-sm">
+          <!-- Heading -->
+          <h6 class="heading-xxs mb-4 text-white">
+            Compañia
+          </h6>
+
+          <!-- Links -->
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a class="text-gray-300" href="#!">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a class="text-gray-300" href="#!">Privacidad & Cookie policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-sm">
+          <!-- Heading -->
+          <h6 class="heading-xxs mb-4 text-white">
+            Contacto
+          </h6>
+
+          <!-- Links -->
+          <ul class="list-unstyled mb-0">
+            <!-- Spinner mientras carga -->
+            <div *ngIf="loadingContacto" class="spinner-border spinner-border-sm text-light" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+
+            <!-- Información de contacto -->
+            <ng-container *ngIf="!loadingContacto && contacto">
+              <li *ngIf="contacto?.telefono">
+                <a class="text-gray-300">
+                  <i class="fe fe-phone me-2"></i>{{contacto.telefono}}
                 </a>
               </li>
-              <li>
-                
+              <li *ngIf="contacto?.whatsapp">
+                <a class="text-gray-300" [href]="'https://wa.me/' + contacto.whatsapp" target="_blank">
+                  <i class="fe fe-smartphone me-2"></i>{{contacto.whatsapp}}
+                </a>
               </li>
-            </ul>
-  
-          </div>
+              <li *ngIf="contacto?.email">
+                <a class="text-gray-300" [href]="'mailto:' + contacto.email">
+                  <i class="fe fe-mail me-2"></i>{{contacto.email}}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="py-6">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-  
-            <!-- Copyright -->
-            <p class="mb-3 mb-md-0 fs-xxs text-muted">
-              © 2019 All rights reserved. Designed by Unvab.
-            </p>
-  
-          </div>
-          
+  </div>
+  <div class="py-6">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <!-- Copyright -->
+          <p class="mb-3 mb-md-0 fs-xxs text-muted">
+            © {{currentYear}} All rights reserved. Designed by Unvab.
+          </p>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>

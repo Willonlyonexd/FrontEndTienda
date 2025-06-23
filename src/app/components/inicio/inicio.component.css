@@ -235,3 +235,34 @@
 #carouselRecomendados {
   margin-bottom: 50px;
 }
+/* Estilos para el banner */
+.bg-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Flechas del carrusel más visibles */
+.custom-arrow {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 15px;
+}
+
+.custom-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-arrow .carousel-control-prev-icon,
+.custom-arrow .carousel-control-next-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Estilos para el spinner de carga */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

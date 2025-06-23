@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-  
+
           <!-- Breadcrumb -->
           <ol class="breadcrumb mb-0 fs-xs text-gray-400">
             <li class="breadcrumb-item active">
@@ -18,7 +18,7 @@
                 Checkout
             </li>
           </ol>
-  
+
         </div>
       </div>
     </div>
@@ -43,6 +43,8 @@
         </div>
       </div>
       <div class="row">
+
+        <!-- COLUMNA IZQUIERDA: Direcciones, Envío y Métodos de Pago -->
         <div class="col-12 col-md-7">
 
           <!-- Form -->
@@ -54,12 +56,12 @@
                 <div class="col-lg-6 col-md-12" *ngFor="let item of direcciones; let idx = index">
                     <div class="card card-lg bg-white mb-8" [ngClass]="{'direccion-selected': item._id == direccion_selected._id}">
                         <div class="card-body">
-                      
+
                           <!-- Heading -->
                           <h6 class="mb-6">
                             Dirección {{idx+1}}
                           </h6>
-                      
+
                           <!-- Text -->
                           <p class="text-muted mb-0">
                             {{item.nombres}} {{item.apellidos}} <br>
@@ -68,27 +70,27 @@
                             {{item.country}} <br>
                             {{item.prefijo}} {{item.telefono}}
                           </p>
-                      
+
                           <!-- Action -->
                           <div class="card-action card-action-end">
                             <!-- Button -->
-                            <button class="btn btn-xs btn-circle btn-primary" 
+                            <button class="btn btn-xs btn-circle btn-primary"
                             (click)="select_direccion(item)">
                               <i class="fe fe-check"></i>
                             </button>
-                      
+
                           </div>
-                      
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Heading -->
+            <!-- SECCIÓN DE ENVÍO -->
             <h6 class="mb-7">Envío</h6>
 
             <!-- Shipping details -->
-            <div class="table-responsive mb-6">
+            <div class="table-responsive mb-9">
               <table class="table table-bordered table-sm table-hover mb-0 bg-white">
                 <tbody>
                   <tr>
@@ -96,7 +98,7 @@
                       <div class="form-check custom-radio">
                         <input (change)="setEnvio()" value="20" class="form-check-input" id="checkoutShippingStandard" name="envio" [(ngModel)]="envio" type="radio">
                         <label class="form-check-label text-body text-nowrap" for="checkoutShippingStandard">
-                          Envio estandar
+                          Envío estándar
                         </label>
                       </div>
                     </td>
@@ -108,7 +110,7 @@
                       <div class="form-check custom-radio">
                         <input (change)="setEnvio()" value="35" class="form-check-input" id="checkoutShippingExpress" name="envio" [(ngModel)]="envio" type="radio">
                         <label class="form-check-label text-body text-nowrap" for="checkoutShippingExpress">
-                         Envio Express 
+                         Envío Express
                         </label>
                       </div>
                     </td>
@@ -120,7 +122,7 @@
                       <div class="form-check custom-radio">
                         <input (change)="setEnvio()" value="50" class="form-check-input" id="checkoutShippingShort" name="envio" [(ngModel)]="envio" type="radio">
                         <label class="form-check-label text-body text-nowrap" for="checkoutShippingShort">
-                          1 - 2 Envios
+                          1 - 2 Envíos
                         </label>
                       </div>
                     </td>
@@ -132,7 +134,7 @@
                       <div class="form-check custom-radio">
                         <input (change)="setEnvio()" value="0" class="form-check-input" id="checkoutShippingFree" name="envio" [(ngModel)]="envio" type="radio">
                         <label class="form-check-label text-body text-nowrap" for="checkoutShippingFree">
-                          Envio Gratis
+                          Envío Gratis
                         </label>
                       </div>
                     </td>
@@ -143,79 +145,150 @@
               </table>
             </div>
 
-            <!-- Address -->
+            <!-- 🔥 SECCIÓN DE MÉTODOS DE PAGO (MOVIDA AQUÍ) -->
             <div class="mb-9">
+              <h6 class="mb-7">💳 Método de Pago</h6>
 
-              <!-- Checkbox -->
-             
+              <!-- Card container para métodos de pago - MÁS GRANDE -->
+              <div class="card bg-white mb-4 shadow-sm">
+                <div class="card-body p-4">
 
-              <!-- Collapse -->
-              <div class="collapse" id="checkoutShippingAddressCollapse">
-                <div class="row mt-6">
-                  <div class="col-12">
-
-                    <!-- Country -->
-                    <div class="form-group">
-                      <label class="form-label" for="checkoutShippingAddressCountry">Country *</label>
-                      <input class="form-control form-control-sm" id="checkoutShippingAddressCountry" type="text" placeholder="Country">
-                    </div>
-
+                  <!-- Pago Manual -->
+                  <div class="form-check mb-4 p-4 border rounded-lg payment-option"
+                       [ngClass]="{'border-primary bg-primary bg-opacity-10': paymentMethod === 'manual'}">
+                    <input class="form-check-input payment-radio" type="radio" name="paymentMethod" id="manual"
+                           value="manual" (change)="selectPaymentMethod('manual')"
+                           [checked]="paymentMethod === 'manual'">
+                    <label class="form-check-label fw-bold d-block cursor-pointer" for="manual">
+                      <div class="d-flex align-items-center">
+                        <span class="me-3 fs-4">💰</span>
+                        <div>
+                          <div class="fw-bold fs-5 mb-1">Pago Contra Entrega</div>
+                          <small class="text-muted">Paga cuando recibas tu pedido en casa</small>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                  <div class="col-12">
 
-                    <!-- Address Line 1 -->
-                    <div class="form-group">
-                      <label class="form-label" for="checkoutShippingAddressLineOne">Address Line 1 *</label>
-                      <input class="form-control form-control-sm" id="checkoutShippingAddressLineOne" type="text" placeholder="Address Line 1">
-                    </div>
-
+                  <!-- Stripe -->
+                  <div class="form-check mb-4 p-4 border rounded-lg payment-option"
+                       [ngClass]="{'border-primary bg-primary bg-opacity-10': paymentMethod === 'stripe'}">
+                    <input class="form-check-input payment-radio" type="radio" name="paymentMethod" id="stripe"
+                           value="stripe" (change)="selectPaymentMethod('stripe')"
+                           [checked]="paymentMethod === 'stripe'">
+                    <label class="form-check-label fw-bold d-block cursor-pointer" for="stripe">
+                      <div class="d-flex align-items-center">
+                        <span class="me-3 fs-4">💳</span>
+                        <div>
+                          <div class="fw-bold fs-5 mb-1">Tarjeta de Crédito/Débito</div>
+                          <small class="text-muted">Visa, Mastercard, American Express</small>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                  <div class="col-12">
 
-                    <!-- Address Line 2 -->
-                    <div class="form-group">
-                      <label class="form-label" for="checkoutShippingAddressLineTwo">Address Line 2</label>
-                      <input class="form-control form-control-sm" id="checkoutShippingAddressLineTwo" type="text" placeholder="Address Line 2 (optional)">
-                    </div>
-
+                  <!-- PayPal -->
+                  <div class="form-check mb-3 p-4 border rounded-lg payment-option"
+                       [ngClass]="{'border-primary bg-primary bg-opacity-10': paymentMethod === 'paypal'}">
+                    <input class="form-check-input payment-radio" type="radio" name="paymentMethod" id="paypal"
+                           value="paypal" (change)="selectPaymentMethod('paypal')"
+                           [checked]="paymentMethod === 'paypal'">
+                    <label class="form-check-label fw-bold d-block cursor-pointer" for="paypal">
+                      <div class="d-flex align-items-center">
+                        <span class="me-3 fs-4">🅿️</span>
+                        <div>
+                          <div class="fw-bold fs-5 mb-1">PayPal</div>
+                          <small class="text-muted">Paga con tu cuenta PayPal de forma segura</small>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                  <div class="col-6">
 
-                    <!-- Town / City -->
-                    <div class="form-group">
-                      <label class="form-label" for="checkoutShippingAddressTown">Town / City *</label>
-                      <input class="form-control form-control-sm" id="checkoutShippingAddressTown" type="text" placeholder="Town / City">
-                    </div>
+                </div>
+              </div>
 
+              <!-- Formulario de Stripe (solo se muestra si se selecciona) -->
+              <div *ngIf="paymentMethod === 'stripe'" class="stripe-form mb-4">
+                <div class="card border-primary shadow-sm">
+                  <div class="card-header bg-primary text-white py-3">
+                    <h6 class="mb-0 fs-5">💳 Información de la Tarjeta</h6>
                   </div>
-                  <div class="col-6">
-
-                    <!-- Town / City -->
-                    <div class="form-group">
-                      <label class="form-label" for="checkoutShippingAddressZIP">ZIP / Postcode *</label>
-                      <input class="form-control form-control-sm" id="checkoutShippingAddressZIP" type="text" placeholder="ZIP / Postcode">
+                  <div class="card-body p-4">
+                    <div id="stripe-card-element" class="stripe-element">
+                      <!-- Stripe insertará el formulario aquí -->
                     </div>
-
-                  </div>
-                  <div class="col-12">
-
-                    <!-- Button -->
-                    <button class="btn btn-sm btn-outline-dark" type="submit">
-                      Save Address
-                    </button>
-
+                    <div *ngIf="stripeError" class="alert alert-danger mt-3 mb-0">
+                      <i class="fe fe-alert-triangle me-2"></i>{{ stripeError }}
+                    </div>
+                    <div class="mt-3">
+                      <small class="text-muted d-flex align-items-center">
+                        <i class="fe fe-lock me-2"></i>
+                        Tu información está segura y encriptada con SSL
+                      </small>
+                    </div>
                   </div>
                 </div>
               </div>
 
+              <!-- PayPal Button Container (solo se muestra si se selecciona PayPal) -->
+              <div *ngIf="paymentMethod === 'paypal'" class="paypal-container mb-4">
+                <div class="card border-primary shadow-sm">
+                  <div class="card-header bg-primary text-white py-3">
+                    <h6 class="mb-0 fs-5">🅿️ Pagar con PayPal</h6>
+                  </div>
+                  <div class="card-body p-4">
+                    <div id="paypal-button-container">
+                      <!-- PayPal insertará sus botones aquí -->
+                    </div>
+                    <div class="mt-3">
+                      <small class="text-muted d-flex align-items-center">
+                        <i class="fe fe-shield me-2"></i>
+                        Protegido por PayPal Buyer Protection
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botón para Pago Manual y Stripe -->
+              <div *ngIf="paymentMethod === 'manual' || paymentMethod === 'stripe'" class="mt-4">
+                <button class="btn btn-dark btn-lg w-100 py-3"
+                        [disabled]="stripeLoading"
+                        (click)="pagar()">
+
+                  <!-- Pago Manual -->
+                  <span *ngIf="!stripeLoading && paymentMethod === 'manual'" class="fs-5">
+                    💰 Confirmar Pedido - {{total | currency:'BOB'}}
+                  </span>
+
+                  <!-- Stripe -->
+                  <span *ngIf="!stripeLoading && paymentMethod === 'stripe'" class="fs-5">
+                    💳 Pagar {{total | currency:'BOB'}}
+                  </span>
+
+                  <!-- Loading -->
+                  <span *ngIf="stripeLoading" class="fs-5">
+                    <span class="spinner-border spinner-border-sm me-2"></span>
+                    Procesando pago...
+                  </span>
+                </button>
+              </div>
+
+              <!-- Mensaje de error -->
+              <div class="text-center mt-3" *ngIf="msm_errorVenta">
+                <div class="alert alert-danger">
+                  <i class="fe fe-alert-triangle me-2"></i>{{msm_errorVenta}}
+                </div>
+              </div>
+
             </div>
-
-
-            
+            <!-- 🔥 FIN SECCIÓN DE MÉTODOS DE PAGO -->
 
           </form>
 
         </div>
+
+        <!-- COLUMNA DERECHA: Productos y Resumen -->
         <div class="col-12 col-md-5 col-lg-4 offset-lg-1">
             <h6 class="mb-7">Productos ({{carrito.length}})</h6>
 
@@ -223,39 +296,38 @@
             <hr class="my-7">
           <!-- Heading -->
          <div class="card-producto" style="max-height: 350px; overflow-y: auto; overflow-x: hidden;">
-            
-  
+
             <!-- List group -->
             <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
               <li class="list-group-item" *ngFor="let item of carrito">
                 <div class="row align-items-center">
                   <div class="col-4">
-  
+
                     <!-- Image -->
                     <a href="product.html">
                       <img [src]="url+'/getProductoPortada/'+item.producto.portada" alt="..." class="img-fluid">
                     </a>
-  
+
                   </div>
                   <div class="col">
-  
+
                     <!-- Title -->
                     <p class="mb-4 fs-sm fw-bold">
                       <a  class="text-body" href="product.html">{{item.producto.titulo}}</a> <br>
                       <span class="text-muted">{{item.producto_variedad.precio|currency:'BOB'}}</span>
                     </p>
-  
+
                     <!-- Text -->
                     <div class="fs-sm text-muted">
                       Talla: {{item.producto_variedad.talla}} <br>
                       Color: {{item.producto_variedad.color}} <br>
                       Cantidad: {{item.cantidad}}
                     </div>
-  
+
                   </div>
                 </div>
               </li>
-              
+
             </ul>
          </div>
 
@@ -290,22 +362,11 @@
                 <span class="text-danger">{{msmCupon}}</span>
               </div>
           </div>
+
           <!-- Disclaimer -->
           <p class="mb-7 fs-xs text-gray-500">
             Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este sitio web y para otros fines descritos en nuestra política de privacidad.
           </p>
-          <div>
-            <button class="btn btn-dark mb-5" (click)="pagar()">Confirmar pedido</button>
-          </div>
-
-          <!-- Button -->
-          <div id="paypal-button-container">
-
-          </div>
-
-          <div class="text-center" *ngIf="msm_errorVenta">
-              <span class="text-danger">{{msm_errorVenta}}</span>
-          </div>
 
         </div>
       </div>

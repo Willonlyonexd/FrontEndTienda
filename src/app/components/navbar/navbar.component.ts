@@ -3,6 +3,7 @@ import { GLOBAL } from '../../services/GLOBAL';
 import { VisitanteService } from '../../services/visitante.service';
 import { ClienteService } from '../../services/cliente.service';
 import { Router } from '@angular/router';
+import { ConfigTiendaPublicServiceService } from '../../services/config-tienda-public-service.service';
 declare var $:any;
 @Component({
   selector: 'app-navbar',
@@ -11,26 +12,51 @@ declare var $:any;
 })
 export class NavbarComponent {
 
-  public user  = JSON.parse(localStorage.getItem('cliente') || 'null');
+  public user = JSON.parse(localStorage.getItem('cliente') || 'null');
   public token = localStorage.getItem('token');
   public carrito:Array<any>=[];
-  public url=GLOBAL.url
-  public loadCarrito=false
-  public total=0
+  public url=GLOBAL.url;
+  public loadCarrito=false;
+  public total=0;
+
+  // Nuevas propiedades para el logo
+  public logo: string | null = null;
+  public loadingLogo = true;
+
   constructor(
     private _visitanteService: VisitanteService,
     private _clienteService: ClienteService,
-    private _router: Router
+    private _router: Router,
+    private _configTiendaService: ConfigTiendaPublicServiceService
   ){}
 
   ngOnInit(){
     this.initCarrito();
+    this.cargarLogo(); // Cargar el logo
 
     this._visitanteService.eventCart.subscribe(response =>{
       this.initCarrito();
-    })
-
+    });
   }
+
+  // Nuevo método para cargar el logo
+  cargarLogo() {
+    this._configTiendaService.getConfiguracionTienda().subscribe(
+      response => {
+        console.log('Configuración tienda (navbar):', response);
+        if (response.success && response.logo) {
+          this.logo = this.url + '/getLogo/' + response.logo;
+          console.log('Logo URL:', this.logo);
+        }
+        this.loadingLogo = false;
+      },
+      error => {
+        console.error('Error al cargar el logo:', error);
+        this.loadingLogo = false;
+      }
+    );
+  }
+
 
   initCarrito(){
     this.loadCarrito=true;
@@ -54,7 +80,7 @@ export class NavbarComponent {
         }
       )
     }
-    
+
   }
 
   logout(){
@@ -75,7 +101,7 @@ export class NavbarComponent {
     for(const item of this.carrito){
       this.total+=item.producto_variedad.precio*item.cantidad
     }
-  
+
   }
 }
 
@@ -88,7 +114,7 @@ quitProductoCarrito(value:any){
   }else{
     this._clienteService.deleteProductoCarrito(value,this.token).subscribe(
       response=>{
-        
+
         if(response.data!=undefined){
           this._visitanteService.eventoCarrito()
           this.initCarrito()
@@ -117,5 +143,5 @@ redirectCarrito(route:any){
 
   })
 }
-  
+
 }
